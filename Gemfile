@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem "sinatra"
+gem "sinatra-cross_origin"
 gem 'thin', '1.3.0'
 
 gem "compass"

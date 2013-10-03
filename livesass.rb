@@ -1,8 +1,13 @@
 require "sinatra"
+require 'sinatra/cross_origin'
 require "compass"
 require "susy"
 require "pry"
 require 'compass-h5bp'
+
+configure do
+  enable :cross_origin
+end
 
 set :public_folder, File.dirname(__FILE__) + '/static'
 
@@ -21,6 +26,7 @@ get '/' do
 end
 
 post '/compile-sass' do
+  cross_origin
   sass = params[:sass]
 
   begin
