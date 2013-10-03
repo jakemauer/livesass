@@ -43,7 +43,7 @@ def save_file(contents)
   filename = "css/#{digest}.css"
   File.rename(output, "static/#{filename}")
   output.unlink
-  filename
+  "//#{request.host}/#{filename}"
 end
 
 # render :scss, template, options, locals
