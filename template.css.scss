@@ -1,5 +1,8 @@
 @import "themes/_default.scss";
 
-
+// system brand colors
+$color-primary: $color-brand-blue7707;
+$color-secondary: $color-brand-blue7703;
+$color-default: tint(red, 90%);
 
 @import "base.scss";
