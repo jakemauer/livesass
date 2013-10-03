@@ -4,6 +4,8 @@ require "susy"
 require "pry"
 require 'compass-h5bp'
 
+set :public_folder, File.dirname(__FILE__) + '/static'
+
 Compass.add_project_configuration 'config.rb'
 
 Compass.sass_engine_options[:load_paths].each do |path|
@@ -15,7 +17,7 @@ default = '@import "themes/_default.scss";'
 base = '@import "base";'
 
 get '/' do
-  "Hellos"
+  'Hello'
 end
 
 post '/compile-sass' do
@@ -32,12 +34,14 @@ post '/compile-sass' do
 end
 
 def save_file(contents)
-  output = Tempfile.open("css")
+  tempdir = "./tmp"
+
+  output = Tempfile.open("css", tempdir)
   output.write(contents)
   output.close
   digest = Digest::MD5.file(output).hexdigest
-  filename = "css_#{digest}.css"
-  File.rename(output, filename)
+  filename = "css/#{digest}.css"
+  File.rename(output, "static/#{filename}")
   output.unlink
   filename
 end
