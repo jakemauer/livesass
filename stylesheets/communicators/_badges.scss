@@ -1,0 +1,31 @@
+/* BADGES */
+.badge {
+    @include border-radius($border-radius);
+    @include inline-block;
+    @include font(xsmall);
+    padding: padding(xsmall);
+    background-color: $gray3;
+    color: $white;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    &.medium {
+        padding-top: padding-vertical(small);
+        padding-bottom: padding-vertical(small);
+    }
+    &.number {
+        padding-right: 0;
+        padding-left: 0;
+        width: font-leading(xsmall) + 2 * padding-vertical(xsmall);
+        text-align: center;
+        &.medium {
+            width: font-leading(xsmall) + 2 * padding-vertical(small);
+        }
+    }
+    &.primary {
+        background-color: $color-primary;
+    }
+    &.secondary {
+        background-color: $color-secondary;
+    }
+}

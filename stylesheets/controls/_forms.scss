@@ -1,0 +1,225 @@
+/* FORMS */
+
+$placeholder-color: $text-color-tertiary;
+
+// unfortunately these need to be individual so the whole selector doesn't get invalidated
+::-webkit-input-placeholder {
+    color: $placeholder-color;
+}
+:-moz-placeholder {
+    color: $placeholder-color;
+}
+::-moz-placeholder {
+    color: $placeholder-color;
+}
+:-ms-input-placeholder {
+    color: $placeholder-color;
+}
+input.placeholder,
+textarea.placeholder {
+    color: $placeholder-color;
+}
+
+// Error
+%error {
+    @include box-shadow(0 0 0 3px tint($red, 80%));
+    border: $border-weight solid $red;
+    background-color: tint($red, 90%);
+}
+
+form, fieldset {
+    @include clearfix;
+}
+
+fieldset {
+    & + fieldset {
+        margin-top: margin(xlarge);
+    }
+}
+
+form {
+    .footnote {
+        margin-bottom: 0;
+        text-align: right;
+    }
+    .block {
+        margin: margin(medium) 0;
+    }
+    &.inline,
+    .inline {
+        @include inline-block;
+    }
+}
+
+// Legends
+legend {
+    @include title(large);
+}
+
+// Form submit buttons
+// Form actions (usually a submit and cancel button)
+menu.submit {
+    margin: margin(xsmall) 0;
+    .cancel {
+        float: right;
+        margin-right: 0;
+    }
+}
+
+
+@import "forms/labels";
+@import "forms/text";
+@import "forms/selectors";
+@import "forms/dropdowns";
+@import "forms/categories";
+@import "forms/toggle";
+@import "forms/search";
+@import "forms/upload";
+@import "forms/sortable";
+
+// Prepended and appended input fields
+
+.prefix,
+.suffix {
+
+    position: relative;
+
+    // Prepended and appended units
+    input {
+    }
+    .attachment {
+        @include border-radius($border-radius 0 0 $border-radius);
+        @include box-sizing(border-box);
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        margin: 0;
+        padding: input-padding(medium);
+        height: height(medium);
+        border-width: $border-weight;
+        border-style: solid;
+        border-color: transparent;
+        border-right-color: $border-color;
+        background-color: shade($white, 5%);
+        background-color: rgba(0,0,0,.05);
+        text-align: center;
+
+        // Inline validation icons
+        &.error {
+            border-color: $red;
+            background: tint($red, 90%);
+            color: shade($red, 15%);
+        }
+        &.valid {
+            border-color: $green;
+            background: tint($green, 90%);
+            color: shade($green, 15%);
+        }
+
+    }
+
+    span.attachment {
+        color: $text-color-secondary;
+    }
+
+    &.focus,
+    &:focus,
+    &.error.focus,
+    &.error:focus {
+        .attachment {
+            border-right-color: $border-color-dark;
+            &.error {
+                border-right-color: $red;
+            }
+            &.valid {
+                border-right-color: $green;
+            }
+        }
+    }
+
+    &.error {
+        .attachment {
+            border-right-color: $red;
+        }
+    }
+
+    // Small size
+    &.small {
+        input {
+            @extend input.small;
+        }
+        .attachment {
+            @include font(small);
+            padding: input-padding(small);
+            height: height(small);
+        }
+    }
+
+}
+
+.suffix {
+
+    .attachment {
+        @include border-radius(0 $border-radius $border-radius 0);
+        right: 0;
+        left: auto;
+        border-color: transparent;
+        border-left-color: $border-color;
+    }
+
+    &.focus,
+    &:focus,
+    &.error.focus,
+    &.error:focus {
+        .attachment {
+            border-left-color: $border-color-dark;
+            &.error {
+                border-left-color: $red;
+            }
+            &.valid {
+                border-left-color: $green;
+            }
+        }
+    }
+
+    &.error {
+        .attachment {
+            border-left-color: $red;
+        }
+    }
+
+}
+
+.prefix.suffix {
+
+    .attachment:first-child {
+        @include border-radius($border-radius 0 0 $border-radius);
+        right: auto;
+        left: 0;
+        border-color: transparent;
+        border-right-color: $border-color;
+    }
+
+    &.focus,
+    &:focus,
+    &.error.focus,
+    &.error:focus {
+        .attachment {
+            border-right-color: $border-color-dark;
+            &.error {
+                border-right-color: $red;
+            }
+            &.valid {
+                border-right-color: $green;
+            }
+        }
+    }
+
+    &.error {
+        .attachment {
+            border-right-color: $red;
+        }
+    }
+
+}

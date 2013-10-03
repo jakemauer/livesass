@@ -1,0 +1,29 @@
+<%= Rouge::Themes::Github.render(:scope => '.highlight') %>
+
+code {
+    @include inline-block;
+    margin: 0 margin(xxsmall);
+    white-space: nowrap;
+    font-size: (12/14) * 1em;
+    &.block {
+        @include border-radius($border-radius);
+        padding: 0 padding-horizontal(small);
+        border: $border-light;
+        background-color: $gray6;
+    }
+    &[data-clipboard] {
+        cursor: pointer;
+    }
+}
+
+pre {
+    @include border-radius($border-radius);
+    @include font(small);
+    margin: 0;
+    font-weight: normal;
+    &.highlight {
+        padding: padding(medium);
+        border: $border-default;
+        background-color: $gray5;
+    }
+}

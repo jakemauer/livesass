@@ -1,0 +1,240 @@
+/* TYPOGRAPHY */
+
+@import "typography/aaux-next";
+
+// Adjust font-families in the theme.
+
+// Font sizes
+$font-size:
+    xxsmall 8px,
+    xsmall 10px,
+    small 12px,
+    medium 14px,
+    large 16px,
+    xlarge 20px,
+    xxlarge 24px,
+    xxxlarge 28px;
+
+@function font-size ($size:medium) {
+    @each $value in $font-size {
+        @if nth($value, 1) == $size {
+            @return nth($value, 2);
+        }
+    }
+}
+
+// Font leading
+$font-leading:
+    xxsmall 12px,
+    xsmall 14px,
+    small 18px,
+    medium 22px,
+    large 24px,
+    xlarge 26px,
+    xxlarge 30px,
+    xxxlarge 32px;
+
+@function font-leading ($size:medium) {
+    @each $value in $font-leading {
+        @if nth($value, 1) == $size {
+            @return nth($value, 2);
+        }
+    }
+}
+
+
+// CORE FONT STYLES
+
+@mixin font ($size:medium) {
+    font-size: font-size($size);
+    line-height: font-leading($size);
+}
+
+@mixin title ($size:medium) {
+    font-weight: bold;
+    font-size: font-size($size);
+    font-family: $font-family-title;
+    line-height: font-leading($size);
+	-webkit-font-smoothing: antialiased;
+}
+
+.font-xxsmall { @include font(xxsmall); }
+.font-xsmall { @include font(xsmall); }
+.font-small { @include font(small); }
+.font-medium { @include font(medium); }
+.font-large { @include font(large); }
+.font-xlarge { @include font(xlarge); }
+.font-xxlarge { @include font(xxlarge); }
+.font-xxxlarge { @include font(xxxlarge); }
+
+// Different heights
+
+@function height ($size:medium) {
+    @return font-leading($size) + 2 * padding-vertical($size) + 2 * $border-weight;
+}
+
+.height-xxsmall { height: height(xxsmall); }
+.height-xsmall { height: height(xsmall); }
+.height-small { height: height(small); }
+.height-medium { height: height(medium); }
+.height-large { height: height(large); }
+.height-xlarge { height: height(xlarge); }
+.height-xxlarge { height: height(xxlarge); }
+
+// Defaults
+
+html, body, select, input, textarea, button {
+    font: normal normal normal #{font-size(medium)}/#{font-leading(medium)} $font-family-base;
+    font-size-adjust: auto;
+}
+
+strong, b { }
+em, i { }
+
+// Content elements
+
+blockquote, p, ol, ul, li {
+    margin: margin(medium) 0 margin(small);
+}
+
+blockquote {
+    padding-left: padding-horizontal(xlarge);
+    border-left: padding-horizontal(xsmall) solid $border-color;
+}
+
+p { }
+
+// COMPOUND TEXT CONFIGURATIONS
+
+h1 { @include title(xxlarge); }
+h2 { @include title(xlarge); }
+h3 { @include title(large); }
+h4 { @include title(medium); }
+h5 { @include title(small); text-transform: uppercase; }
+h6 { @include title(xsmall); }
+
+h1,
+.title1 {
+    margin: 0;
+}
+h2,
+.title2 {
+    margin: margin(large) 0 margin(medium);
+}
+h3, h4,
+.title3, .title4 {
+    margin: margin(medium) 0 margin(small);
+}
+
+h5, h6,
+.title5, .title6 {
+    margin: margin(small) 0 margin(xsmall);
+}
+
+// Utility classes
+
+@mixin margin($size:medium) {
+    @if $size == large {
+    	blockquote, p {
+    	    margin: margin(large) 0;
+        }
+    } @else if $size == small {
+        h1, h2,
+        .title1, .title2 {
+            margin: margin(medium) 0 margin(small);
+        }
+        h3, h4,
+        .title3, .title4 {
+            margin: margin(small) 0 margin(xsmall);
+        }
+        h5, h6,
+        .title5, .title6 {
+            margin: margin(xsmall) 0 margin(xxsmall);
+        }
+        blockquote, p, ol, ul {
+            margin: margin(xsmall) 0;
+        }
+        li {
+            margin: 0 0 margin(xxsmall);
+            ul, ol {
+                margin: margin(xxsmall) 0;
+            }
+        }
+    } @else if $size == none {
+        h1, h2,
+        .title1, .title2 {
+            margin: 0;
+        }
+        h3, h4,
+        .title3, .title4 {
+            margin: 0;
+        }
+        h5, h6,
+        .title5, .title6 {
+            margin: 0;
+        }
+        blockquote, p, ol, ul {
+            margin: 0;
+        }
+        li {
+            margin: 0;
+            ul, ol {
+                margin: 0;
+            }
+        }
+    }
+}
+
+// Time
+time {
+    margin: 0;
+    margin-left: margin(small);
+    color: $text-color-tertiary;
+    font-weight: normal;
+}
+
+// Link styles
+a {
+    color: $link-color;
+    // Default
+    text-decoration: none;
+    cursor: pointer;
+
+    // Hover
+    &:hover, &:active, &:focus {
+        color: $link-color-change;
+    }
+    p & {
+        border-bottom: $border-weight solid;
+    }
+}
+
+// Truncation
+@mixin truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+// Help Text
+.help {
+    @include border-radius($border-radius);
+    @include margin(small);
+    padding: padding(large);
+    background-color: $gray5;
+    & > :first-child {
+        margin-top: margin(xxsmall);
+    }
+}
+
+.footnote,
+.subtitle,
+.caption {
+    @include font(small);
+    color: $text-color-secondary;
+}
+
+.caption,
+.subtitle {
+    margin: margin(xsmall) 0;
+}

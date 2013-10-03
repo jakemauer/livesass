@@ -1,0 +1,32 @@
+/* TAGS */
+
+.tags {
+    @include border-radius($border-radius);
+    padding: margin(small);
+    padding-bottom: 0;
+    border: $border-default;
+    background: $gray6;
+}
+.tag {
+    @include border-radius($border-radius);
+    @include inline-block;
+    @include background-clip(padding-box);
+    @include font(small);
+    position: relative;
+    margin-right: margin(small);
+    margin-bottom: margin(small);
+    padding: padding(small);
+    border: $border-default;
+    background: $white;
+    white-space: nowrap;
+    .close {
+        @include inline-block;
+        position: static;
+        margin-left: margin(xsmall);
+        padding: 0;
+        vertical-align: baseline;
+        .icon {
+            @include icon-fixed;
+        }
+    }
+}

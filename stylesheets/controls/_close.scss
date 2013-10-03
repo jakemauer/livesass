@@ -1,0 +1,11 @@
+// Remove icon
+.close {
+    @extend %fade-out;
+    position: absolute;
+    top: padding-vertical(medium);
+    right: padding-horizontal(medium);
+    color: $gray3;
+    &:hover {
+	    color: $gray1;
+    }
+}

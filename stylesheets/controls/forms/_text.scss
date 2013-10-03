@@ -1,0 +1,150 @@
+@function input-padding ($size:medium) {
+    @return padding-vertical($size) padding-horizontal($size) ((padding-vertical($size)) - 1px);
+}
+
+input.text,
+input.email,
+input.number,
+input.password,
+input.search,
+input.telephone,
+input.url,
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="url"],
+textarea {
+
+    @include inline-block;
+    @include border-radius($border-radius);
+    @include box-shadow($shadow-inset, $highlight-drop);
+    @include box-sizing(border-box);
+    padding: input-padding(medium);
+
+    // Default
+    width: 100%;
+    height: height(medium);
+    outline: none;
+    border: $border-default;
+    background: $white;
+    color: $text-color;
+    cursor: text;
+
+    // Focus
+    &:focus,
+    &.focus,
+    &.error.focus,
+    &.error:focus {
+        @include box-shadow($shadow-inset-heavy, $highlight-drop);
+        outline: none;
+        border-color: $border-color-dark;
+        background-color: $white;
+    }
+
+    // Disabled
+    &:disabled, &.disabled {
+        background: $gray6;
+    }
+
+    // Different widths
+    &.width-xlarge { width: columns(12); }
+    &.width-large { width: columns(8); }
+    &.width-medium { width: columns(6); }
+    &.width-small { width: columns(4); }
+    &.width-xsmall { width: columns(2); }
+    &.width-xxsmall {
+        padding: padding(small);
+        width: columns(1);
+    }
+
+    // Different sizes
+    &.xlarge {
+        @include font(xlarge);
+        padding: input-padding(xlarge);
+        height: height(xlarge);
+    }
+    &.large {
+        @include font(large);
+        padding: input-padding(large);
+        height: height(large);
+    }
+    &.medium {
+        @include font(medium);
+        padding: input-padding(medium);
+        height: height(medium);
+    }
+    &.small {
+        @include font(small);
+        padding: input-padding(small);
+        height: height(small);
+    }
+    &.xsmall {
+        @include font(xsmall);
+        padding: input-padding(xsmall);
+        height: height(xsmall);
+    }
+
+    // Error state
+    &.error,
+    &.borderless.error {
+        @extend %error;
+    }
+
+    // Borderless
+    &.borderless {
+        @include box-shadow(none);
+        border-color: transparent;
+        resize: none;
+        &.error:focus,
+        &.error.focus {
+            @include box-shadow(none);
+            border-color: transparent;
+        }
+    }
+
+}
+
+textarea {
+    &.small {
+        height: 60px;
+    }
+    &, &.medium {
+        height: 120px;
+    }
+    &.large {
+        height: 180px;
+    }
+}
+
+// *TODO*
+.inline-count {
+    position: absolute;
+    right: 1px;
+    bottom: 1px;
+    display: none;
+    padding: 5px 10px;
+    background: rgba(255, 255, 255, .9);
+    color: #b5b5b5;
+    font-size: 11px;
+}
+
+input.number,
+input[type="number"] {
+    margin-right: margin(small);
+    width: 72px;
+    &.small {
+        width: 60px;
+    }
+}
+
+@-moz-document url-prefix() {
+    textarea{
+        padding: 0 0 0 padding-horizontal(medium) ;
+    }
+    .inline-count {
+        right: 2px;
+    }
+}

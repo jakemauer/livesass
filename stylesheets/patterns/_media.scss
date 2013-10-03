@@ -1,0 +1,42 @@
+// Media object with image floated left and text (title and subtext) floated right
+@mixin media {
+    @include clearfix;
+    margin: margin(medium) 0 0;
+
+    .image {
+        float: left;
+        margin-right: margin(medium);
+    }
+    .text {
+        float: left;
+    }
+    .details {
+        float: right;
+    }
+
+    h2, h3, h4, h5,
+    .title2, .title3, .title4, .title5,
+    p {
+        margin: 0;
+    }
+
+    h5 {
+        color: $text-color-secondary;
+    }
+}
+
+.media {
+    @include media;
+}
+
+.empty {
+    @include media;
+    @include border-radius($border-radius);
+    padding: margin(medium);
+    border: $border-default;
+    border-style: dashed;
+    color: $text-color;
+    .text {
+        float: none;
+    }
+}

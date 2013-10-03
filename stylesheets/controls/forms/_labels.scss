@@ -1,0 +1,34 @@
+label {
+    @include clearfix;
+    display: block;
+    margin: 0 0 margin(xxsmall);
+    color: $text-color;
+    .status,
+    .error,
+    &.error {
+        @include font(small);
+        margin-left: margin(small);
+        color: $text-color-secondary;
+    }
+    .error,
+    &.error {
+        color: shade($red, 10%);
+    }
+    &.error {
+        margin-left: 0;
+    }
+
+    // Question mark tooltips
+    .tip {
+        display: block;
+        float: right;
+        .icon {
+            @include icon-fixed;
+            color: icon-color(gray);
+        }
+        &.active .icon,
+        &:hover .icon {
+            color: $color-secondary;
+        }
+    }
+}

@@ -1,0 +1,9 @@
+/* COLORS */
+// Edit colors in the theme.
+// Alternating color backgrounds
+.striped {
+    & > *:nth-child(even),
+    &.even {
+        background-color: $gray6;
+    }
+}

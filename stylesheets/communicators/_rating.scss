@@ -1,0 +1,14 @@
+.rating {
+    font-size: 0;
+    .icon {
+        @include icon-fixed;
+        color: icon-color(gray);
+        font-size: font-size(medium) * $icon-font-ratio;
+    }
+    .positive {
+        color: icon-color(blue);
+    }
+    .unrated {
+        color: $gray4;
+    }
+}

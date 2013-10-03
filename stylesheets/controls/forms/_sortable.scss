@@ -1,0 +1,53 @@
+.sortable {
+	@extend ul.reset;
+	@include border-radius($border-radius);
+	border: $border-default;
+	li {
+		margin: 0;
+		padding: padding(medium);
+		border-top: $border-light;
+		&:first-child {
+			@include border-radius($border-radius $border-radius 0 0);
+			border-top-color: transparent !important;
+		}
+		&:last-child {
+			@include border-radius(0 0 $border-radius $border-radius);
+		}
+		.icon-reorder {
+			display: block;
+			float: right;
+			color: icon-color(gray);
+			&:hover {
+                color: inherit;
+				cursor: move;
+			}
+		}
+		&.hover {
+			background: $gray5;
+		}
+		&.sortable-dragging {
+            @include box-shadow(0 0 0 1px $color-primary);
+            position: relative;
+            border-top-color: tint($color-primary, 20%);
+            background-color: tint($color-primary, 20%);
+            color: $white;
+            cursor: -webkit-grabbing;
+			cursor: -moz-grabbing;
+			cursor: grabbing;
+		}
+		&.sortable-placeholder {
+			height: font-leading(medium);
+			background-color: $gray6;
+		}
+	}
+	&.fixed {
+		overflow-x: visible;
+		overflow-y: scroll;
+		height: $height-max;
+	}
+	&.dragging {
+		.icon-reorder:hover{
+			color: $gray1;
+		}
+	}
+}

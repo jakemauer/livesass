@@ -1,0 +1,78 @@
+.pages_featured {
+    #main {
+        margin-top: margin(xxlarge) + margin(medium);
+    }
+    .heading {
+        margin-bottom: margin(large);
+    }
+    section {
+        margin: margin(xxlarge) 0;
+    }
+    .carousel {
+        margin: 0;
+        .content {
+            overflow: visible;
+            margin: 0;
+            height: 20 * $baseline + margin(xxlarge);
+            & > .item {
+                @include clearfix;
+                @include box-sizing(border-box);
+                @include box-shadow($shadow-heavy);
+                @include border-radius($border-radius);
+                position: absolute;
+                left: 0;
+                z-index: 1040;
+                padding: margin(large);
+                width: columns(8);
+                height: 20 * $baseline;
+                border: $border-default;
+                background: $gray4;
+                opacity: 0.5;
+                &.next {
+                    right: 0;
+                    left: auto;
+                }
+                &.active {
+                    top: -1 * (margin(xxlarge) / 2);
+                    left: 2 * ($column + $gutter);
+                    z-index: 1050;
+                    height: 20 * $baseline + margin(xxlarge);
+                    background: $white;
+                    opacity: 1;
+                }
+            }
+        }
+        .media {
+            margin: 0;
+            .image {
+                float: left;
+                width: columns(4, margin(large) + $border-weight);
+            }
+            .text {
+                float: right;
+                width: columns(4, margin(large) + $border-weight);
+                h4 {
+                    margin-bottom: margin(small);
+                }
+                .rating {
+                    margin: margin(xsmall) 0;
+                }
+                p {
+                    margin: 0 0 margin(medium);
+                }
+            }
+        }
+    }
+    .featured .column {
+        .text {
+            height: 3 * font-leading(medium);
+        }
+        h4 {
+            @include truncate;
+            margin-bottom: 0;
+        }
+        p {
+            margin: 0;
+        }
+    }
+}

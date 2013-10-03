@@ -1,0 +1,293 @@
+/* BUTTONS */
+
+// Button colors function
+@mixin button-state ($state:default, $color:$gray5, $text:$text-color) {
+
+    @if $state == hover {
+        border-color: shade($color, 22%);
+        background-color: lighten($color, 3%);
+
+        color: $text;
+
+        @if lightness($color) > 60% {
+            @include box-shadow(inset 0 1px 0 0 rgba($white, 0.95), 0 2px 3px 0 rgba($black, 0.075));
+        } @else {
+            @include box-shadow(inset 0 1px 0 0 tint($color, 60%), 0 2px 3px 0 rgba($black, 0.20));
+        }
+
+    // Active state
+    } @else if $state == active {
+        @include box-shadow(inset 0 2px 6px -1px rgba($black, 0.4));
+        @include text-shadow(none);
+        border-color: shade($color,40%);
+
+        background-color: shade($color, 20%);
+
+    // Disabled state
+    } @else if $state == disabled {
+
+        @include box-shadow(none);
+        @include text-shadow(none);
+        opacity: 0.5;
+
+        &.hover,
+        &:hover {
+            border-color: shade($color, 20%);
+            background-color: $color;
+        }
+
+    // Default state
+    } @else {
+        border: $border-weight solid shade($color, 20%);
+        background: $color image-url("noise.png");
+
+        color: $text;
+
+        @if lightness($color) > 60% {
+            @include box-shadow(inset 0 1px 0 0 tint($color, 85%), 0 2px 2px 0 rgba($black, 0.05));
+            @include text-shadow(0px 1px 0px tint($color, 85%));
+        } @else {
+            @include box-shadow(inset 0 1px 0 0 tint($color, 40%), 0 2px 2px 0 rgba($black, 0.15));
+            @include text-shadow(0px -1px 0px shade($color, 20%));
+        }
+
+    }
+
+}
+
+@mixin button-color($color:$gray5, $text:$text-color) {
+
+    @include button-state(default, $color, $text);
+
+    // Hover
+    &:hover,
+    &.hover {
+        @include button-state(hover, $color, $text);
+    }
+
+    // Active
+    &:active,
+    &.active {
+        @include button-state(active, $color, $text);
+    }
+
+    // Disabled
+    &:disabled,
+    &.disabled {
+        @include button-state(disabled, $color, $text);
+    }
+
+}
+
+@mixin button-state-inset($state:default, $color:$border-color, $text:$text-color) {
+
+    // Hover state
+    @if $state == hover {
+        @include box-shadow($shadow-light);
+        border-color: shade($color, 7%);
+        background: rgba($white, 0.9);
+        color: $text;
+
+    // Active state
+    } @else if $state == active {
+        @include box-shadow($shadow-inset, $highlight-drop);
+        border-color: shade($color, 7%);
+        background: rgba($black, 0.08);
+        color: tint($text, 30%);
+
+    // Disabled state
+    } @else if $state == disabled {
+
+        &.hover,
+        &:hover {
+            @include box-shadow(none);
+            border-color: $color;
+            background: transparent;
+            color: tint($text, 30%);
+        }
+
+    // Default state
+    } @else {
+        @include box-shadow($highlight-inset, $highlight-drop);
+        border: $border-weight solid $color;
+        background: transparent;
+        color: tint($text, 30%);
+        text-shadow: none;
+    }
+
+}
+
+@mixin button-color-inset($color:$border-color, $text:$text-color) {
+
+    @include button-state-inset(default, $color, $text);
+
+    // Hover
+    &:hover,
+    &.hover {
+        @include button-state-inset(hover, $color, $text);
+    }
+
+    // Active
+    &:active,
+    &.active {
+        @include button-state-inset(active, $color, $text);
+    }
+
+    // Disabled
+    &:disabled,
+    &.disabled {
+        @include button-state-inset(disabled, $color, $text);
+    }
+
+}
+
+@mixin button-size ($size:medium, $shape:default, $margin:true) {
+    @include font($size);
+
+    @if $margin == true {
+        margin: 0 margin(small) 0 0;
+    }
+
+    @if $size == small {
+        .icon-fixed {
+            margin-left: margin(xxsmall);
+        }
+    } @else {
+        .icon-fixed {
+            margin-left: margin(xsmall);
+        }
+    }
+
+    @if $shape == square {
+
+		padding: padding-vertical($size) 0;
+		width: height($size);
+		height: height($size);
+		text-align: center;
+        .icon-fixed {
+            margin-left: 0;
+        }
+
+    } @else {
+
+        padding: padding($size);
+
+    }
+
+}
+
+.button {
+    @include border-radius($border-radius);
+    @include inline-block;
+    @include box-sizing(border-box);
+    @include background-clip(padding-box);
+    @include button-color;
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+
+    // Disable text highlighting within button
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: -moz-none;
+    -ms-user-select: none;
+    user-select: none;
+
+    // Different sizes
+    &.small     { @include button-size(small); }
+    &, &.medium { @include button-size(medium); } // Default Button Size
+    &.large     { @include button-size(large); }
+    &.xlarge    { @include button-size(xlarge); }
+
+}
+
+input[type="button"],
+button {
+
+    @extend .button;
+
+    // Primary
+    &.primary { @include button-color($color-primary, $white); }
+
+    // Secondary
+    &.secondary { @include button-color($color-secondary, $white); }
+
+    // Square content action buttons with icons
+    &.square {
+
+        @include button-size(medium, square);
+        &.small {
+            @include button-size(small, square);
+        }
+        .icon {
+            margin-left: 0;
+        }
+    }
+
+    // Inset buttons
+    &.inset {
+        @include button-color-inset;
+    }
+
+    // Secret buttons (shows only on hover)
+    &.secret {
+        @include button-color-inset;
+        @include box-shadow(none);
+        border-color: transparent;
+    }
+
+    .icon {
+        @include icon-fixed;
+    }
+
+}
+
+// Filter button arrow toggling
+
+.filters-button {
+    &:after {
+        @include appdirect-icon();
+        @include icon-fixed;
+        content: $triangle-small-down;
+    }
+    &.active:after {
+        content: $triangle-small-up;
+    }
+}
+
+// Button classes related to function
+
+input[type="button"],
+button {
+    &.dark {
+        @include button-color($gray1, $white);
+    }
+    &.red,
+    &.delete {
+        @include button-color($red, $white);
+    }
+    &.cancel {
+        @extend button.secret;
+    }
+}
+
+menu {
+
+    &.buttons {
+        margin-top: margin(medium);
+    }
+
+    &.small button {
+        @include button-size(small);
+    }
+
+    &.inset button {
+        @include button-color-inset;
+    }
+
+    &.actions button {
+        @extend button.square;
+    }
+
+}

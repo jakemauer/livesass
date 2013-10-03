@@ -1,0 +1,41 @@
+$status-size: $bullet-small;
+
+/* STATUSES */
+
+// Status gem colors function
+@mixin gem-color ($base) {
+    @include background-image(linear-gradient(tint($base, 10%),shade($base, 10%)));
+    border-color: shade($base, 25%);
+
+    background: $base;
+
+}
+
+.status {
+    @include font(small);
+    .gem {
+        @include box-shadow(inset 0 1px 0 0 rgba($white,0.4), 0 2px 3px -1px rgba($black, 0.3));
+        @include border-radius($status-size);
+        @include box-sizing(border-box);
+        @include inline-block;
+        margin-right: margin(xxsmall);
+        width: $status-size;
+        height: $status-size;
+        border: $border-default;
+        background: $gray4;
+        vertical-align: text-top;
+
+        &.gray {
+            @include box-shadow(none);
+        }
+        &.green {
+            @include gem-color($green);
+        }
+        &.red {
+            @include gem-color($red);
+        }
+        &.yellow {
+            @include gem-color($yellow);
+        }
+    }
+}

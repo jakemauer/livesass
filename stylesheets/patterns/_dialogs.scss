@@ -1,0 +1,358 @@
+$dialog-arrow-width: margin(medium) / 2;
+$dialog-arrow-offset: $dialog-arrow-width * 2;
+
+.dialog {
+    @include margin(small);
+    @include box;
+    @include border-radius($border-radius-large);
+    @include background-clip(padding-box);
+    @include box-sizing(border-box);
+    // don't use @include box-shadow here, these rules
+    // will take the shape of the arrow into account.
+    // @include filter(drop-shadow(0 2px 6px rgba(0,0,0,0.1)));
+    // We'll just do the box shadow on the content box right now and do text-shadows on the arrows with icons.
+    @include box-shadow($shadow-overlay, $highlight-inset);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1010;
+    display: none;
+    width: columns(4);
+    border: $border-default;
+    text-align: left;
+
+    p {
+        margin-bottom: 0;
+    }
+
+    & > .content {
+        margin: 0 margin(medium) margin(medium);
+        padding: 0;
+    }
+
+    .content > :first-child {
+        margin-top: margin(small);
+    }
+
+    .pager {
+        @extend nav.inline;
+        position: absolute;
+        bottom: 0;
+        margin: margin(medium) 0;
+        width: 90%;
+        text-align: center;
+        .arrow {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 0;
+            &.prev {
+                right: auto;
+                left: 0;
+            }
+        }
+        ol {
+            margin: 0;
+            height: height(small);
+            line-height: height(small);
+            li {
+                margin: 0;
+                &:first-child a {
+                    margin-left: 0;
+                }
+            }
+            a {
+                @include inline-block;
+                @include border-radius($bullet-small);
+                margin-left: margin(small);
+                padding: 0;
+                width: $bullet-xsmall;
+                height: $bullet-xsmall;
+                background-color: $gray1;
+            }
+            .active a {
+                background-color: $gray3;
+            }
+        }
+
+
+        & > .item {
+            @extend %slide;
+            position: relative;
+            display: none;
+
+            &.active,
+            &.next,
+            &.prev {
+                display: block;
+            }
+
+            &.active {
+                left: 0;
+                &.left {
+                    left: -100%;
+                }
+                &.right {
+                    left: 100%;
+                }
+            }
+
+            &.next,
+            &.prev {
+                position: absolute;
+                top: 0;
+                width: 100%;
+            }
+
+            &.next {
+                left: 100%;
+                &.left {
+                    left: 0;
+                }
+            }
+
+            &.prev {
+                left: -100%;
+                &.right {
+                    left: 0;
+                }
+            }
+
+        }
+    }
+
+    // Fluid-width dialogs
+    &.fluid {
+        width: auto;
+    }
+
+    // Includes arrow pointer
+    &.arrow {
+
+        // Default is top placement
+        &:before,
+        &:after {
+            position: absolute;
+            bottom: -1 * $dialog-arrow-offset + 1;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border: solid transparent;
+            content: "";
+            pointer-events: none;
+        }
+        &:after {
+            margin-left: -1 * $dialog-arrow-width;
+            border-width: $dialog-arrow-width;
+            border-top-color: $white;
+        }
+        &:before {
+            bottom: -1 * $dialog-arrow-offset - 2;
+            margin-left: -1 * $dialog-arrow-width - 1;
+            border-width: $dialog-arrow-width + 1;
+            border-top-color: $border-color;
+        }
+
+        // Bottom placement
+        &[data-placement^="bottom"] {
+            &:before,
+            &:after {
+                top: -1 * $dialog-arrow-offset + 1;
+                bottom: auto;
+                border-color: transparent;
+                border-bottom-color: $white;
+            }
+            &:before {
+                top: -1 * $dialog-arrow-offset - 2;
+                border-bottom-color: $border-color;
+            }
+        }
+
+        // Top and bottom placement - left and right arrows
+        &[data-placement="top-left"],
+        &[data-placement="bottom-left"] {
+            &:after {
+                left: $dialog-arrow-offset + 1;
+                margin-left: auto;
+            }
+            &:before {
+                left: $dialog-arrow-offset;
+                margin-left: auto;
+            }
+
+        }
+        &[data-placement="top-right"],
+        &[data-placement="bottom-right"] {
+            &:after {
+                right: $dialog-arrow-offset + 1;
+                left: auto;
+                margin-left: auto;
+            }
+            &:before {
+                right: $dialog-arrow-offset;
+                left: auto;
+                margin-left: auto;
+            }
+
+        }
+
+        // Left and right placements
+        &[data-placement^="left"],
+        &[data-placement^="right"] {
+            &:before,
+            &:after {
+                top: 50%;
+                bottom: auto;
+                margin-top: -1 * $dialog-arrow-width;
+                margin-left: auto;
+            }
+            &:before {
+                margin-top: -1 * $dialog-arrow-width - 1;
+            }
+        }
+
+
+        // Left placement
+        &[data-placement^="left"] {
+            &:before,
+            &:after {
+                right: -1 * $dialog-arrow-offset + 1;
+                border-color: transparent;
+                border-left-color: $white;
+            }
+            &:before {
+                right: -1 * $dialog-arrow-offset - 2;
+                border-left-color: $border-color;
+            }
+        }
+
+        // Right placement
+        &[data-placement^="right"] {
+            &:before,
+            &:after {
+                right: auto;
+                left: -1 * $dialog-arrow-offset + 1;
+                border-color: transparent;
+                border-right-color: $white;
+            }
+            &:before {
+                left: -1 * $dialog-arrow-offset - 2;
+                border-right-color: $border-color;
+            }
+        }
+
+        // Left and right placements - top and bottom arrows
+        &[data-placement="right-top"],
+        &[data-placement="left-top"] {
+            &:after {
+                top: $dialog-arrow-offset + 1;
+                margin-top: auto;
+            }
+            &:before {
+                top: $dialog-arrow-offset;
+                margin-top: auto;
+            }
+
+        }
+        &[data-placement="right-bottom"],
+        &[data-placement="left-bottom"] {
+            &:after {
+                top: auto;
+                bottom: $dialog-arrow-offset + 1;
+                margin-top: auto;
+            }
+            &:before {
+                top: auto;
+                bottom: $dialog-arrow-offset;
+                margin-top: auto;
+            }
+
+        }
+
+    }
+
+    // Form Dialogs
+    &.form {
+        padding: 0;
+        background: $gray5;
+        form {
+            margin: margin(small);
+        }
+        legend {
+            @include visuallyhidden;
+        }
+        .block{
+            margin: margin(small) 0;
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+        .submit {
+            margin: 0;
+        }
+        &.arrow {
+            &:after {
+                border-top-color: $gray5;
+            }
+            &[data-placement^="bottom"]:after {
+                border-color: transparent;
+                border-bottom-color: $gray5;
+            }
+            &[data-placement^="left"]:after {
+                border-color: transparent;
+                border-left-color: $gray5;
+            }
+            &[data-placement^="right"]:after {
+                border-color: transparent;
+                border-right-color: $gray5;
+            }
+        }
+    }
+
+    // Feature Discovery
+    &.tutorial {
+        padding-bottom: height(small) + (margin(medium)*2);
+        & > .content {
+            overflow: hidden;
+        }
+    }
+
+    // Dark style
+    &.dark {
+        @include box-shadow($shadow-overlay, inset 0 1px 1px 0 rgba(255,255,255,.1));
+        @include filter(drop-shadow(0 -1px 0 shade($black, 40%)));
+        width: columns(4);
+        border-style: hidden;
+        background-color: $black;
+        background-color: rgba($black,.8);
+        color: $white;
+        -webkit-font-smoothing: antialiased;
+        &.arrow {
+            &:after {
+                display: none;
+            }
+            &:before {
+                border-top-color: rgba($black,.8);
+            }
+            &[data-placement^="bottom"] {
+                &:before {
+                    border-color: transparent;
+                    border-bottom-color: rgba($black,.8);
+                }
+            }
+            &[data-placement^="left"] {
+                &:before {
+                    border-color: transparent;
+                    border-left-color: rgba($black,.8);
+                }
+            }
+            &[data-placement^="right"] {
+                &:before {
+                    border-color: transparent;
+                    border-right-color: rgba($black,.8);
+                }
+            }
+        }
+    }
+
+}

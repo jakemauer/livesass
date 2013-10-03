@@ -1,0 +1,52 @@
+form {
+    &.browse {
+        legend {
+            @include title(small);
+            margin: margin(xsmall) 0 margin(xxsmall);
+        }
+    }
+}
+
+.pages_results {
+    .list {
+        .rating {
+            float: left;
+            clear: left;
+            padding-top: margin(xsmall);
+            width: columns(2, margin(medium) + $border-weight);
+            text-align: center;
+        }
+        .details button {
+            margin: margin(xsmall) 0;
+        }
+    }
+    .compare {
+        @include margin(none);
+        @include font(small);
+        .price {
+            h6 {
+                margin-top: margin(small);
+            }
+            &:first-child h6 {
+                margin-top: 0;
+            }
+        }
+        .row {
+            border-top: $border-light;
+            &:first-child {
+                border-top: 0;
+                h4 {
+                    margin: margin(medium) 0 margin(small);
+                }
+                .column {
+                }
+            }
+        }
+        .column {
+            padding: margin(medium) 0;
+            &:first-child {
+                width: columns(3, margin(medium));
+            }
+        }
+    }
+}

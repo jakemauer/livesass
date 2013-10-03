@@ -1,0 +1,86 @@
+/* ALERTS */
+
+@mixin alert-color ($color, $background:90%, $border:75%, $text:15%, $strong:40%) {
+    border-color: tint($color, $border);
+    background: tint($color, $background);
+    color: shade($color, $text);
+    h2,
+    h3,
+    strong,
+    a,
+    .close {
+        color: shade($color, $strong);
+    }
+    a:hover {
+        color: $color;
+    }
+}
+
+// Local Alerts
+.alert {
+    @include alert-color($gray2);
+    @include border-radius($border-radius);
+
+    // Default
+    position: relative;
+    margin: margin(large) 0;
+    padding: padding(large);
+    border-width: $border-weight;
+    border-style: solid;
+
+    p {
+        margin: 0;
+    }
+
+    button {
+        margin-top: margin(small);
+        margin-bottom: margin(small);
+    }
+
+    .close {
+        top: padding-vertical(large);
+        right: padding-horizontal(large);
+    }
+
+    &.titled {
+        @include margin(small);
+        h3 {
+            margin-top: 0;
+        }
+        p {
+            margin-bottom: 0;
+        }
+        .close {
+            line-height: font-leading(large);
+        }
+    }
+
+    // Colors
+    &.red { @include alert-color($red); }
+    &.yellow { @include alert-color($yellow, 85%, 25%, 25%, 45%); }
+    &.green { @include alert-color($green); }
+    &.blue { @include alert-color($blue); }
+
+}
+
+// System Alerts
+.alert-system {
+
+    @extend .alert;
+    @include border-radius(0);
+    position: static;
+    margin: 0;
+    padding: 0;
+    border-width: 0 0 $border-weight;
+
+    .wrapper {
+        position: relative;
+        padding: padding(medium);
+    }
+
+    .close {
+        top: padding-vertical(medium);
+        right: padding-horizontal(medium);
+    }
+
+}

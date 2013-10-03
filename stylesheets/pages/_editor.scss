@@ -1,0 +1,13 @@
+.pages_editor {
+    .sidebar {
+        .content {
+            border-top: $border-light;
+            .percentage {
+                margin: margin(medium) 0;
+            }
+        }
+    }
+    .main .block {
+        width: columns(8);
+    }
+}

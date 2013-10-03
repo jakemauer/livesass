@@ -1,0 +1,69 @@
+// Pagination Links
+
+.pagination {
+    font-size: 0;
+    .icon {
+        @include icon-fixed;;
+    }
+    a {
+        @extend .button;
+        @include button-size(small, square);
+        @include button-color-inset;
+        @include border-radius(0);
+        margin: 0;
+        border-left-style: hidden;
+        &.prev {
+            @include border-radius($border-radius 0 0 $border-radius);
+            border-left-style: solid;
+        }
+        &.middle {
+            @include border-radius(0 $border-radius $border-radius 0);
+        }
+        &.last {
+            @include border-radius($border-radius 0 0 $border-radius);
+            border-left-style: solid;
+        }
+        &.next {
+            @include border-radius(0 $border-radius $border-radius 0);
+        }
+    }
+    span {
+        @include button-size(small, square);
+        @include button-color-inset;
+        @include inline-block;
+        @include box-sizing(border-box);
+        @include background-clip(padding-box);
+        margin: 0;
+        border-left-style: hidden;
+        &.ellipsis {
+            @include box-shadow(none);
+            border: 0;
+            background: transparent;
+            color: $text-color-secondary;
+        }
+    }
+    &.v1 {
+        .next,
+        .prev {
+            @include border-radius(0);
+        }
+        .prev {
+            border-left-style: hidden;
+        }
+        .firstpage,
+        .next,
+        .prev,
+        .lastpage {
+            padding: padding(small);
+            width: auto;
+        }
+        .firstpage {
+            @include border-radius($border-radius 0 0 $border-radius);
+            border-left-style: solid;
+        }
+        .lastpage {
+            @include border-radius(0 $border-radius $border-radius 0);
+            border-right-style: solid;
+        }
+    }
+}

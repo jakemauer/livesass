@@ -1,0 +1,63 @@
+// **TODO**
+// update close and spinner icons
+.search-field {
+    position: relative;
+    .text,
+    input[type="text"],
+    input[type="search"],
+    input.search {
+        @include border-radius(height(medium));
+        padding-left: height(medium);
+    }
+    
+    .spinner-small {
+        position: absolute;
+        top: 10px;
+        left: 12px;
+    }
+    .icon-search {
+        position: absolute;
+        top: 8px;
+        left: 12px;
+        display: block;
+        color: icon-color(gray);
+        font-size: font-size(large);
+        line-height: font-leading(medium);
+    }
+    .close {
+        margin: $border-weight;
+        color: icon-color(gray);
+    }
+    &.small {
+        .text,
+        input[type="text"],
+        input[type="search"],
+        input.search {
+            @extend .search.small;
+            @include border-radius(height(small));
+            padding-left: height(small);
+        }
+        .icon-search {
+            top: 6px;
+            left: 9px;
+            font-size: font-size(medium);
+            line-height: font-leading(small);
+        }
+    }
+    &.large {
+        .text,
+        input[type="text"],
+        input[type="search"],
+        input.search {
+            @extend .search.large;
+            @include border-radius(height(large));
+            padding-left: height(large);
+        }
+        .icon-search {
+            top: 10px;
+            left: 14px;
+            font-size: font-size(xlarge);
+            line-height: font-leading(large);
+        }
+    }
+}

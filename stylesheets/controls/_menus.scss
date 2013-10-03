@@ -1,0 +1,106 @@
+.context {
+
+    @extend .dropdown;
+    position: relative;
+
+    .toggle {
+        margin-right: 0;
+    }
+
+    .menu {
+        @include border-radius($border-radius);
+        @include box-sizing(border-box);
+        @include background-clip(padding-box);
+        @include box-shadow($shadow-medium);
+        position: absolute;
+        top: $dropdown-offset-medium-v;
+        left: 0;
+        z-index: 1000;
+        display: none;
+        min-width: columns(3);
+        border: $border-default;
+        background: $white;
+        text-align: left;
+        .header {
+            @include title(small);
+            padding: padding(medium);
+            border-top: $border-light;
+            border-bottom: $border-light;
+            background: $gray6;
+            &:first-child {
+                @include border-radius(($border-radius - 1) ($border-radius - 1) 0 0);
+                border-top: 0;
+            }
+        }
+        ul {
+            @extend ul.reset;
+        }
+        li {
+            display: block;
+        }
+        a {
+            display: block;
+            padding: padding(medium);
+            border-top: $border-light;
+            color: inherit;
+            white-space: nowrap;
+            font-weight: normal;
+            &:hover {
+                background-color: $color-secondary;
+                color: $white;
+            }
+        }
+        li:first-child a {
+            border-top: 0;
+        }
+        .first a,
+        ul:first-child li:first-child a {
+            @include border-radius(($border-radius - 1) ($border-radius - 1) 0 0);
+        }
+        .last a,
+        ul:last-child li:last-child a {
+            @include border-radius(0 0 ($border-radius - 1) ($border-radius - 1));
+        }
+
+        &.right {
+            right: 0;
+            left: auto;
+        }
+
+        &.top {
+            top: auto;
+            bottom: $dropdown-offset-medium-v;
+        }
+    }
+
+    &.open {
+        .menu {
+            display: block;
+        }
+        // this is causing a problem with the myapps
+        // buttons where the background is transparent on active
+        button:focus,
+        .button:focus {
+            @include button-state-inset(active);
+        }
+    }
+
+    // Small
+    &.small {
+        .toggle {
+            @include button-size(small);
+            margin-right: 0;
+        }
+        .menu {
+            top: font-leading(small) * 2;
+            a {
+                padding: padding(small);
+            }
+            &.top {
+                top: auto;
+                bottom: $dropdown-offset-small-v;
+            }
+        }
+    }
+
+}

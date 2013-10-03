@@ -1,0 +1,41 @@
+.pages_assign {
+    .main .column {
+        @include box;
+        height: $baseline * 36;
+        &.first,
+        &.second {
+            width: columns(5);
+        }
+        &.third {
+            position: relative;
+            margin-left: $gutter;
+            width: columns(6);
+            .footer {
+                @include box-sizing(border-box);
+                position: absolute;
+                bottom: 0;
+                padding: 0;
+                width: 100%;
+                button {
+                    display: block;
+                    margin: margin(large);
+                }
+            }
+        }
+        .filters {
+            margin: 0;
+            padding: 0;
+            border-top: 0;
+            border-bottom: $border-default;
+            .search-field {
+                margin: margin(small);
+            }
+        }
+        .media {
+            margin: margin(medium) 0;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}

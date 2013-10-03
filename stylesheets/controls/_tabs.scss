@@ -1,0 +1,51 @@
+// Tabs
+.tabs {
+    margin-bottom: margin(medium);
+    & > nav {
+        @extend nav.inline;
+        margin-bottom: 0;
+        border-bottom: 0;
+        ul {
+            border-bottom: $border-default;
+        }
+        li {
+            position: relative;
+            top: 1px;
+            margin-right: margin(small);
+            border: 1px solid transparent;
+            border-bottom: 0;
+            &.active {
+                @include border-radius($border-radius $border-radius 0 0);
+                border: $border-default;
+                border-bottom: 0;
+                background: $white;
+            }
+            a {
+                color: $text-color-secondary;
+            }
+            .icon {
+                @include icon-fixed;
+                margin-right: margin(xxsmall);
+            }
+            &.active a, a:hover {
+                color: inherit;
+            }
+        }
+    }
+    .tab {
+        display: none;
+        margin-top: -1px;
+        &.active {
+            display: block;
+        }
+    }
+}
+
+.main {
+    .tab {
+        @include border-radius(0 0 $border-radius $border-radius);
+        padding: padding(medium);
+        border: $border-default;
+        border-top: 0;
+    }
+}

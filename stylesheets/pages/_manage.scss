@@ -1,0 +1,60 @@
+.pages_manage {
+    .card {
+        position: relative;
+        margin-bottom: 0;
+        border: 0;
+        border-top: $border-light;
+        border-radius: 0;
+        &:first-child {
+            border-top: 0;
+        }
+        .image {
+            margin-right: $gutter;
+            width: columns(2, margin(medium) + $border-weight);
+        }
+        .info {
+            width: auto;
+        }
+        .content {
+            padding: margin(medium);
+            .text {
+                width: auto;
+            }
+        }
+        .controls {
+            position: absolute;
+            top: margin(medium);
+            right: margin(medium);
+            width: auto;
+            li {
+                border-left: $border-default;
+                &:first-child {
+                    border-left: 0;
+                }
+            }
+            a {
+                padding-top: 0;
+                padding-bottom: 0;
+            }
+        }
+        .details {
+            padding: 0;
+            margin-top: margin(small);
+            .column {
+                width: columns(4);
+                &.first,
+                &:first-child {
+                    width: columns(6);
+                }
+                &.last,
+                &:last-child {
+                    width: columns(4, margin(medium) + $border-weight);
+                }
+            }
+        }
+        .alert {
+            margin: margin(medium);
+            margin-top: 0;
+        }
+    }
+}

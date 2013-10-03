@@ -1,0 +1,282 @@
+//Adjust Logo and logomark in the theme.
+$footer-height: 8 * $baseline;
+
+// General
+
+html, body {
+    height: 100%;
+}
+
+.container {
+    min-height: 100%;
+}
+
+
+.wrapper {
+    @include clearfix;
+    margin: 0 auto;
+    width: columns(16);
+}
+
+#main {
+    overflow: visible;
+    margin: margin(xxlarge) 0;
+    padding-bottom: $footer-height;
+}
+
+.sidebar {
+    float: left;
+    width: columns(4);
+    .module {
+        @include box;
+        margin: margin(medium) 0;
+        nav {
+            @extend nav.vertical;
+        }
+        &:first-child {
+            margin-top: 0;
+        }
+        &.list .item {
+            .image {
+                width: image-size(small);
+            }
+            .text {
+                width: columns(3, margin(medium) + $border-weight);
+            }
+        }
+    }
+    & > h2:first-child,
+    & > h3:first-child {
+        margin-top: 0;
+    }
+}
+
+.main {
+    float: right;
+    width: columns(12);
+
+    &.left {
+        float: left;
+    }
+    &.full-width {
+        @include reset-float;
+        width: auto;
+    }
+    & > h2:first-child {
+        margin-top: 0;
+    }
+    section {
+        @include clearfix;
+        margin: margin(medium) 0;
+        & > h2:first-child,
+        & > h3:first-child {
+            margin-top: 0;
+        }
+    }
+    .heading {
+        @include controls;
+        margin-bottom: margin(medium);
+    }
+    & .alert:first-child {
+        margin-top: 0;
+    }
+    .list {
+        .items {
+            margin: 0;
+        }
+        .item {
+            margin: 0;
+            padding: margin(medium) 0;
+            border-top: $border-light;
+            &:first-child {
+                border-top-style: hidden;
+            }
+        }
+        .image {
+            width: columns(2, margin(medium) + $border-weight);
+        }
+        .text {
+            float: left;
+            margin-left: $gutter;
+            width: columns(8);
+        }
+        .details {
+            width: columns(2, margin(medium) + $border-weight);
+        }
+
+    }
+}
+
+$header-height: font-leading(large) + 2 * padding-vertical(xxlarge);
+
+header {
+    background: $black;
+    .primary {
+        @include clearfix;
+        width: 100%;
+        &, .wrapper {
+            background: $black;
+        }
+        a {
+            color: $color-brand-coolgray6;
+            .icon {
+                margin-right: margin(xsmall);
+            }
+            &:hover {
+                background-color: tint($black,  5%);
+                color: $white;
+            }
+        }
+        .active a {
+            background-color: shade($black, 40%);
+            color: $white;
+        }
+        .context .menu {
+            top: $header-height + margin(small);
+        }
+    }
+    .secondary {
+        @include clearfix;
+        @include box-shadow($highlight-inset, $shadow-light);
+        width: 100%;
+        border-bottom: $border-weight solid $color-brand-coolgray6;
+        background: $gray4 image-url("noise.png");
+        a {
+            padding: padding(xlarge);
+            color: $text-color-secondary;
+        }
+        li:first-child a {
+            padding-left: 0;
+        }
+        .active a,
+        a:hover {
+            color: $text-color;
+        }
+        .active a {
+        	@include text-shadow(0 1px 0 $white);
+            font-weight: bold;
+        	-webkit-font-smoothing: antialiased;
+        }
+        .search-field {
+            float: right;
+            margin: margin(xsmall) 0;
+            width: columns(4);
+        }
+    }
+    #logo {
+        @extend .ir;
+        display: block;
+        float: left;
+        padding: 0 padding-horizontal(xxlarge);
+        width: image-width($logo-mark);
+        height: $header-height;
+        border-right: 1px solid shade($black, 40%);
+        border-left: 1px solid shade($black, 40%);
+        background: image-url($logo-mark) no-repeat 50% 50%;
+        &:hover {
+            background-color: tint($black,  5%);
+        }
+    }
+    nav {
+        @extend nav.inline;
+        @include clearfix;
+        margin-bottom: 0;
+        li {
+            font-size: font-size(small);
+        }
+        &.navigation {
+            float: left;
+            width: columns(6, image-width($logo-mark) + padding-horizontal(xxlarge) * 2 + $border-weight * 2);
+            li {
+                @include font(large);
+            }
+            & > ul > li {
+                border-right: 1px solid shade($black, 40%);
+                font-size: font-size(large);
+            }
+            a {
+                padding: padding(xxlarge);
+            }
+            .toggle .icon {
+                margin-right: 0;
+                text-align: right;
+            }
+        }
+        &.settings {
+            float: right;
+            margin: margin(small) 0;
+            width: columns(10);
+            text-align: right;
+            a {
+                @include font(small);
+                padding: padding(small);
+                border-left: 1px solid shade($black, 40%);
+            }
+            ul {
+                @include inline-block;
+                @include box-sizing(border-box);
+                @include border-radius($border-radius);
+                @include box-shadow(1px 1px 1px 0 tint($black, 10%));
+                height: height(small);
+                border: 1px solid shade($black, 40%);
+            }
+            li {
+                &.first a,
+                &:first-child a {
+                    border-left-style: hidden;
+                }
+                &.active a {
+                    background-color: shade($black, 40%);
+                    color: $white;
+                    &:hover {
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+}
+
+footer {
+    @extend %fade-in;
+    @include font(small);
+    position: relative;
+    margin-top: -1 * $footer-height;
+    margin-bottom: margin(xxlarge);
+    color: $color-brand-coolgray4;
+    a {
+        color: inherit;
+        &:hover {
+            color: inherit;
+        }
+    }
+    .column {
+        width: columns(8);
+    }
+    .right {
+        float: right;
+    }
+    .copyright {
+        @include inline-block;
+        margin-right: margin(small);
+    }
+    .languages {
+        @include inline-block;
+    }
+    .links {
+        @extend nav.inline;
+        margin-bottom: 0;
+        text-align: right;
+        li {
+            padding: padding(small);
+            border: $border-weight solid transparent;
+            font-size: font-size(small);
+            &.last {
+                padding-right: 0;
+            }
+        }
+        a {
+            padding: 0;
+        }
+    }
+}

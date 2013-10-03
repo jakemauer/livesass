@@ -1,0 +1,9 @@
+// Collapse
+.collapse {
+    @include transition(height $transition-time ease);
+    overflow: hidden;
+    height: 0;
+    &.in {
+        height: auto;
+    }
+}

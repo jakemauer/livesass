@@ -1,0 +1,37 @@
+.spinner-small {
+    min-width: 16px;
+    min-height: 16px;
+}
+
+.spinner-medium {
+    min-width: 32px;
+    min-height: 32px;
+}
+
+.spinner-large {
+    min-width: 64px;
+    min-height: 64px;
+}
+
+i {
+    &.spinner-small,
+    &.spinner-medium,
+    &.spinner-large {
+        display: inline-block;
+        vertical-align: middle;
+        // Margin for default button size
+        button & {
+            margin-left: padding-horizontal(xsmall);
+        }
+        // Margins for other button sizes
+        button.small & {
+            margin-left: padding-horizontal(xxsmall);
+        }
+        button.large & {
+            margin-left: padding-horizontal(small);
+        }
+        button.xlarge & {
+            margin-left: padding-horizontal(medium);
+        }
+    }
+}

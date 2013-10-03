@@ -1,0 +1,31 @@
+.disabled {
+    @include box-shadow(none);
+    background-color: $gray6;
+    border-color: $border-color;
+    cursor: default;
+
+    a {
+      color: $text-color;
+      &:hover {
+        cursor: default;
+        color: $text-color;
+      }
+    }
+
+    .text,
+    .controls {
+      opacity: 0.5
+    }
+
+    .percentage {
+      @extend .gray
+    }
+
+    .image {
+      opacity: 0.5;
+      cursor: default;
+      .overlay {
+          @include background-image(none);
+      }
+    }
+}

@@ -1,0 +1,99 @@
+.ts-track {
+
+    $colorList:
+        "blue" $blue, 
+        "red" $red, 
+        "green" $green, 
+        "black" $black
+    ;
+    @include user-select(none);
+    @include inline-block;
+    @include border-radius($border-radius);
+    position: relative;
+    z-index: 3;
+    overflow: hidden;
+    width: 52px;
+    height: 18px;
+    border: $border-dark;
+    background-color: #c0bfbd;
+
+    input[type="checkbox"] {
+        position: absolute;
+        left: -9999px;
+    }
+
+    .ts-on-text, 
+    .ts-off-text {
+        @include box-shadow($shadow-inset);
+        @include text-shadow(rgba(0,0,0,.35) 0px 1px 2px);
+        position: absolute;
+        display:inline-block;
+        width: 36px;
+        height: 18px;
+        background-image: image-url("noise.png");
+        color: $white;
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 10px;
+        line-height: 18px;
+    }
+    .ts-on-text {
+        left: 0px;
+        padding-right: 5px;
+    }
+    .ts-off-text {
+        right: -3px;
+        padding-left: 5px;
+    }
+    .ts-switch-container {
+        position: relative;
+        margin-left: -36px;
+        width: 86px;
+        height: 18px;
+
+    }
+    .ts-switch {
+        @include border-radius($border-radius - 1);
+        @include box-shadow($highlight-inset);
+        position: absolute;
+        z-index: 5;
+        display: inline-block;
+        margin: 0 35px;
+        width: 18px;
+        //border: 1px solid #bcbcbc;
+        height: 18px;
+        background: #f2f1ef image-url("noise.png");
+        cursor: pointer;
+    }
+
+    @each $i in $colorList{
+        &.on-#{nth($i, 1)} {
+            .ts-on-text{
+                background-color: shade(tint(nth($i, 2), 50%), 20%);
+            }
+        }
+
+        &.off-#{nth($i, 1)} {
+            .ts-off-text{
+                background-color: shade(tint(nth($i, 2), 50%), 20%);
+            }
+        }
+    }
+
+    &, 
+    .ts-switch-container {
+        -webkit-transition: all 0.25s ease-in-out;
+        -moz-transition: all 0.25s ease-in-out;
+        -o-transition: all 0.25s ease-in-out;
+        transition: all 0.25s ease-in-out;
+    }
+
+    &.no-transition, 
+    &.no-transition .ts-switch-container {
+        -webkit-transition: none !important;
+        -moz-transition: none !important;
+        -o-transition: none !important;
+        transition: none !important;
+    }
+
+}

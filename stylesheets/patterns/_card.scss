@@ -1,0 +1,104 @@
+// Cards e.g. company/user/product profile summary and details
+@mixin key {
+    @include font(small);
+    color: $text-color-secondary;
+    font-weight: normal;
+}
+.key {
+    @include key;
+}
+
+.card {
+    @include box;
+    @include border-radius($border-radius);
+    margin-bottom: margin(xlarge);
+    border: $border-default;
+    .key {
+        margin-right: margin(xxsmall);
+        line-height: font-leading(medium);
+    }
+    .value .label {
+        margin-right: 0;
+    }
+    .edit {
+        margin-left: margin(xsmall);
+        color: $text-color-secondary;
+        text-transform: lowercase;
+        &:hover {
+            color: $color-secondary;
+        }
+    }
+    .content {
+        @include clearfix;
+        padding: margin(medium);
+    }
+    .info {
+        @include media;
+        float: left;
+        margin-top: 0;
+        width: columns(7, margin(medium) + $border-weight);
+        h3 {
+            text-transform: capitalize;
+        }
+        .image {
+            margin-right: margin(small) - $border-weight;
+            width: image-size(small);
+        }
+        .text {
+            width: columns(6);
+            .status {
+                margin-right: margin(small);
+            }
+        }
+    }
+    .controls {
+        width: columns(5, margin(medium) + $border-weight);
+        button {
+            margin-left: margin(medium);
+        }
+    }
+    .details {
+        @include clearfix;
+        padding: margin(medium);
+        .percentage {
+            @extend .percentage.small;
+        }
+        .column {
+            width: columns(4);
+            &.first,
+            &:first-child,
+            &.last,
+            &:last-child {
+                width: columns(4, margin(medium) + $border-weight);
+            }
+        }
+    }
+    .stats {
+        @include clearfix;
+        border-top: $border-default;
+        .stat {
+            @include box-sizing(border-box);
+            margin: 0;
+            padding: margin(medium);
+            width: columns(2, -1 * ($gutter));
+            border-left: 1px solid #EAEAEA;
+            text-align: center;
+            &.first,
+            &:first-child {
+                width: columns(2, -1 * ($gutter/2) + $border-weight);
+                border-left: 0;
+            }
+            &.last,
+            &:last-child {
+                width: columns(2, -1 * ($gutter/2) + $border-weight);
+            }
+        }
+        .value {
+            @include font(xxxlarge);
+        }
+        .key {
+            margin: 0;
+        }
+    }
+
+}

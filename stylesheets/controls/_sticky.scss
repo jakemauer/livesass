@@ -1,0 +1,8 @@
+// Sticky element
+
+.affix {
+    @include reset-float;
+    position: fixed;
+    top: $gutter;
+    z-index: 1010;
+}

@@ -1,0 +1,43 @@
+/* LABELS */
+
+// Label coloring mixins
+@mixin label-color($color, $background: 0%) {
+    border: $border-weight solid shade($color, $background);
+    background-color: shade($color, $background);
+}
+
+@mixin label-color-light($color, $text: 0%, $border: 75%) {
+    border: $border-weight solid tint($color, $border);
+    background-color: $white;
+    color: shade($color, $text);
+}
+
+.label {
+    @include label-color($gray2);
+    @include border-radius($border-radius-small);
+    @include box-sizing(border-box);
+    @include inline-block;
+    @include font(xsmall);
+    margin: 0 margin(xsmall);
+    padding: padding(xsmall);
+    color: $white;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    // -webkit-font-smoothing: antialiased;
+
+    &.red { @include label-color($red); }
+    &.yellow { @include label-color($yellow, 10%); }
+    &.green { @include label-color($green); }
+    &.blue { @include label-color($blue); }
+
+    &.inset {
+
+        @include label-color-light($gray2);
+        &.green { @include label-color-light($green, 0%, 60%); }
+        &.yellow { @include label-color-light($yellow, 20%, 10%); }
+        &.red { @include label-color-light($red); }
+        &.blue { @include label-color-light($blue); }
+
+    }
+}

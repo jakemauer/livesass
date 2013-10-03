@@ -1,0 +1,128 @@
+/* AppDirect Icons */
+
+@import "iconography/variables";
+@import "iconography/mixins";
+@import "iconography/icons";
+
+/* Font Path */
+
+@font-face {
+    font-weight: normal;
+    font-style: normal;
+    font-family: $icon-font-family;
+    src:url('#{$icon-font-path}/#{$icon-font-family}.eot?v=#{$icon-font-version}');
+    src:url('#{$icon-font-path}/#{$icon-font-family}.eot?#iefix') format('embedded-opentype'),
+        url('#{$icon-font-path}/#{$icon-font-family}.woff?v=#{$icon-font-version}') format('woff'),
+        url('#{$icon-font-path}/#{$icon-font-family}.ttf?v=#{$icon-font-version}') format('truetype'),
+        url('#{$icon-font-path}/#{$icon-font-family}.svg#iconography?v=#{$icon-font-version}') format('svg');
+}
+
+/* Core */
+
+[class^="icon-"],
+[class*=" icon-"] {
+    @include appdirect-icon();
+    font-weight: normal !important;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+    display: inline-block;
+    text-decoration: inherit;
+    speak: none;
+}
+
+/* makes sure icons active on rollover in links */
+a {
+    [class^="icon-"],
+    [class*=" icon-"] {
+        display: inline;
+    }
+}
+
+// allows usage of the hide class directly on font awesome icons
+[class^="icon-"],
+[class*=" icon-"] {
+    &.hide {
+        display: none;
+    }
+}
+
+/* Iconography Utility Classes */
+
+@function icon-color ($color:gray) {
+    @if $color == red {
+        @return shade($red, 10%);
+    } @else if $color == yellow {
+        @return shade($yellow, 20%);
+    } @else if $color == green {
+        @return shade($green, 10%);
+    } @else if $color == blue {
+        @return shade($blue, 10%);
+    } @else if $color == gray {
+        @return $gray3;
+    }
+}
+
+// Icon Colors
+[class^="icon-"],
+[class*=" icon-"] {
+    &.red {
+        color: icon-color(red);
+    }
+    &.yellow {
+        color: icon-color(yellow);
+    }
+    &.green {
+        color: icon-color(green);
+    }
+    &.blue {
+        color: icon-color(blue);
+    }
+    &.gray {
+        color: icon-color(gray);
+    }
+}
+
+$icon-font-ratio: (16/14);
+
+@mixin icon-size ($size:medium) {
+    @if $size == small {
+        font-size: font-size(small) * $icon-font-ratio;
+    } @else if $size == large {
+        font-size: font-size(large) * $icon-font-ratio;
+    } @else {
+        font-size: font-size(medium) * $icon-font-ratio;
+    }
+}
+
+// Icon Sizes
+[class^="icon-"],
+[class*=" icon-"] {
+    &.icon-large {
+        @include icon-size(large);
+    }
+    &.icon-medium {
+        @include icon-size(medium);
+    }
+    &.icon-small {
+        @include icon-size(small);
+    }
+}
+
+// Format
+@mixin icon-fixed {
+    @include inline-block;
+    vertical-align: top;
+    text-align: center;
+    font-size: $icon-font-ratio * 1em;
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+    &.icon-fixed {
+        @include icon-fixed;
+    }
+}
+
+@import "iconography/extras";

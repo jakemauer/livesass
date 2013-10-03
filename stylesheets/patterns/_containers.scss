@@ -1,0 +1,183 @@
+// Container object with gray header and footer
+menu.controls {
+
+    float: right;
+    text-align: right;
+    font-size: 0;
+
+    & > button,
+    .selector {
+        margin-right: 0;
+        margin-left: margin(small);
+    }
+    menu {
+        @include inline-block;
+    }
+    .menu {
+        font-size: font-size(medium);
+    }
+}
+
+@mixin controls {
+
+    @include clearfix;
+    position: relative;
+
+    & > h2,
+    & > h3 {
+        margin: 0;
+        height: height(small);
+        line-height: height(small);
+    }
+
+    .controls {
+        position: absolute;
+        top: 0;
+        right: 0;
+        float: none;
+    }
+
+    button {
+        @include button-size(small, default, false);
+        &.square {
+            @include button-size(small, square, false);
+        }
+    }
+    .search-field {
+        @extend .search-field.small;
+    }
+
+}
+
+@mixin header ($controls:none) {
+
+    @include clearfix;
+    @include box-shadow($highlight-inset);
+    @include background(linear-gradient(rgba($black, 0),rgba($black, 0.02)), $gray5);
+    padding: padding(medium);
+    border-top: $border-default;
+    border-bottom: $border-default;
+    h1, h2, h3, h4, h5, h6 {
+        margin: 0;
+        color: $text-color;
+    }
+    &:first-child {
+        @include border-radius($border-radius $border-radius 0 0);
+        border-top-style: hidden;
+    }
+
+    @if $controls == "controls" {
+        @include controls;
+        padding: margin(small);
+        .controls {
+            top: margin(small);
+            right: margin(small);
+        }
+        menu {
+            @extend menu.inset;
+        }
+        button {
+            @include button-color-inset;
+        }
+    }
+
+}
+
+@mixin footer ($controls:none) {
+
+    @include header;
+    @include border-radius(0 0 $border-radius $border-radius);
+    border-bottom: 0;
+
+    @if $controls == "controls" {
+        @include controls;
+        padding: margin(small);
+        .pagination {
+            float: right;
+        }
+    }
+
+}
+
+@mixin box ($controls:none) {
+    @include border-radius($border-radius);
+    @include box-sizing(border-box);
+    border: $border-default;
+    background: $white;
+    & > .content {
+        @include clearfix;
+        padding: 0 margin(medium);
+    }
+    @if $controls == "controls" {
+        .header {
+            @include header(controls);
+        }
+        .footer {
+            @include footer(controls);
+        }
+    } @else {
+        .header {
+            @include header;
+        }
+        .footer {
+            @include footer;
+        }
+    }
+}
+
+.box {
+    @include box;
+}
+
+.box-controls {
+    @include box(controls);
+}
+
+.filters {
+    @include clearfix;
+    @include box-shadow($highlight-inset);
+    margin: margin(small) 0 0;
+    padding: margin(small) 0 0;
+    border-top: $border-default;
+    &.visuallyhidden {
+        position: absolute;
+        padding: 0;
+    }
+    .dropdown {
+        @extend .context.small;
+        float: left;
+        margin-right: margin(small);
+    }
+    .chzn-single {
+        @include button-color-inset;
+    }
+    .chzn-with-drop .chzn-single {
+        @include button-state-inset(active);
+    }
+}
+
+// List styles
+
+.list {
+    @include box(controls);
+    ul.items {
+        margin-bottom: margin(medium);
+        padding-left: 0;
+    }
+    .item {
+        @include media;
+        .image {
+            margin-right: 0;
+        }
+        .text {
+            float: right;
+            .subtitle {
+                margin-bottom: margin(small);
+            }
+        }
+        .details .subtitle {
+            color: $text-color;
+            font-weight: bold;
+        }
+    }
+}

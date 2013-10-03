@@ -1,0 +1,71 @@
+$dropdown-width-medium: columns(4);
+$dropdown-height-medium: font-leading(medium) + padding-vertical(medium) * 2 + $border-weight * 2;
+$dropdown-offset-medium-v: $dropdown-height-medium + margin(small);
+$dropdown-offset-medium-h: $dropdown-width-medium + margin(small);
+
+$dropdown-width-small: columns(3);
+$dropdown-height-small: font-leading(small) + padding-vertical(small) * 2 + $border-weight * 2;
+$dropdown-offset-small-v: $dropdown-height-small + margin(small);
+$dropdown-offset-small-h: $dropdown-width-small + margin(small);
+
+select {
+    @include box-sizing(border-box);
+    padding: padding(medium);
+    height: 36px;
+    border: $border-default;
+    background: $white;
+    &.error {
+        @include box-shadow(0 0 0 3px tint($red, 80%));
+        border-color: $red;
+        background-color: tint($red, 90%);
+    }
+}
+
+.dropdown {
+
+    label {
+        margin: 1px margin(medium) 1px 0;
+        padding: padding-vertical(medium) 0;
+        //@include inline-block;
+    }
+
+    &.inline {
+        label {
+            float: left;
+        }
+    }
+
+    // Error state
+    &.error .chzn-single {
+        @extend %error;
+    }
+
+    // Small and menu dropdowns
+    &.small {
+        @include font(small);
+        label {
+            margin-right: margin(small);
+            padding: padding-vertical(small) 0;
+        }
+        .chzn-single {
+            @include button-size(small);
+            margin-right: 0;
+            i {
+                padding: (padding-vertical(small) + $border-weight) padding-horizontal(small);
+                line-height: font-leading(small);
+            }
+        }
+        .chzn-drop {
+            top: font-leading(small) * 2;
+            width: columns(3);
+        }
+    }
+
+    // Inline
+    &.inline {
+        @include inline-block;
+    }
+
+}
+
+@import "chosen";

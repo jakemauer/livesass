@@ -1,0 +1,112 @@
+// Prices
+
+.price {
+    margin-top: margin(small);
+    border-top: $border-light;
+    &:first-child {
+        margin-top: 0;
+        border-top-style: hidden;
+    }
+    h6 {
+        margin-bottom: 0;
+    }
+}
+
+.profile {
+    @extend .card;
+    border: 0;
+    & > .header {
+        padding: margin(medium);
+        border: $border-default;
+        &:first-child {
+            @include border-radius($border-radius);
+            border-top-style: solid;
+        }
+    }
+    .info {
+        float: left;
+        width: columns(12, margin(medium) + $border-weight);
+        .image {
+            margin-right: $gutter;
+            width: columns(2, margin(medium) + $border-weight);
+        }
+        .text {
+            width: columns(10);
+            p {
+                margin: margin(xsmall) 0 margin(small);
+            }
+        }
+    }
+    .controls {
+        width: columns(4, margin(medium) + $border-weight);
+    }
+    &.tabs > nav {
+        margin-top: margin(xlarge);
+    }
+    .tab {
+        @include clearfix;
+        padding-top: margin(xxlarge);
+    }
+    .main {
+        float: left;
+    }
+    .cta {
+        margin: margin(xlarge) 0;
+        text-align: center;
+        button {
+            margin: 0 margin(medium);
+        }
+    }
+    .sidebar {
+        float: right;
+        .detail {
+            margin: margin(medium) 0;
+            .key {
+                line-height: font-leading(small);
+            }
+        }
+    }
+    .featured {
+        @include media;
+        margin: 0;
+        margin-bottom: margin(xxlarge);
+        padding: 0;
+        border-top: 0;
+        .image,
+        .text {
+            width: columns(6);
+            margin-right: 0;
+        }
+        .text {
+            margin-left: $gutter;
+        }
+    }
+    .features {
+        .feature {
+            float: left;
+            margin-left: $gutter;
+            width: columns(6);
+            &:nth-child(odd) {
+                clear: left;
+                margin-left: 0;
+            }
+        }
+    }
+    .customers {
+        .customer {
+            display: block;
+            float: left;
+            margin-top: margin(medium);
+            margin-left: $gutter;
+            width: columns(3);
+            &:nth-child(4n + 1) {
+                clear: left;
+                margin-left: 0;
+            }
+        }
+    }
+}
+
+.pages_product {
+
+}

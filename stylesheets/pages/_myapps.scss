@@ -1,0 +1,132 @@
+.pages_myapps {
+    .myapps_intro {
+        .image {
+            position: relative;
+            .icon {
+                position: relative;
+                z-index: 10;
+                display: inline-block;
+                background: image-url("content/intro_icons.png") no-repeat;
+            }
+
+            .iconBk {
+                position: absolute;
+                z-index: 1;
+                display: inline-block;
+                width: 16px;
+                height: 16px;
+                background-color: $color-primary;
+            }
+
+            &.useApps {
+                .icon {
+                    width: 50px;
+                    height: 58px;
+                }
+
+                .iconBk {
+                    top: 17px;
+                    left: 17px;
+                }
+            }
+            &.findApps {
+                .icon {
+                    width: 108px;
+                    height: 80px;
+                    background-position: 0 -100px;
+                }
+
+                .iconBk {
+                    width: 30px;
+                    height: 30px;
+                    &.cal {
+                        top: 24px;
+                        left: 7px;
+                    }
+                    &.chart {
+                        top: 24px;
+                        left: 70px;
+                    }
+                }
+            }
+            &.manageAccount {
+                .icon {
+                    width: 89px;
+                    height: 52px;
+                    background-position: 0 -250px;
+                }
+                .iconBk {
+                    top: 8px;
+                    left: 9px;
+                }
+            }
+
+
+        }
+    }
+    .myapp {
+        position: relative;
+        margin-bottom: margin(xxlarge);
+        .info {
+            margin-bottom: 10px;
+            min-height: 22px;
+            text-align: center;
+        }
+        .context {
+            position: absolute;
+            top: 41px;
+            right: 46px;
+            display: none;
+        }
+        .menu {
+            top: 36px;
+            right: 9px;
+        }
+        &.hover .context {
+            display: block;
+        }
+        p {
+            text-align: center;
+            font-size: 16px;
+        }
+    }
+    .controls a {
+        @include font(xlarge);
+        color: $text-color-tertiary;
+        &:hover,
+        &.active,
+        &:active,
+        &:focus,
+        &.focus {
+            color: inherit;
+        }
+    }
+    .product {
+        display: block;
+        margin: 0 auto;
+    }
+    .alert {
+        & > h2 {
+            margin-top: margin(medium);
+            margin-bottom: 0;
+            text-align: center;
+        }
+        & > p {
+            margin-bottom: margin(medium);
+            text-align: center;
+        }
+        .column {
+            margin-bottom: margin(medium);
+            &:first-child {
+                margin-left: $column + $gutter - $border-weight - padding-horizontal(large);
+            }
+            .image {
+                float: left;
+                margin-right: margin(medium);
+            }
+            p {
+                margin-left: image-size(small) + margin(medium);
+            }
+        }
+    }
+}

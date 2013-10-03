@@ -1,0 +1,160 @@
+// Grid
+$column: 48px;
+$gutter: 24px;
+$baseline: 14px;
+
+$height-min: $baseline * 4;
+$height-max: $baseline * 12;
+
+// Spacing
+$padding-vertical:
+    xxsmall 0px,
+    xsmall 2px,
+    small 4px,
+    medium 6px,
+    large 8px,
+    xlarge 10px,
+    xxlarge 12px;
+$padding-horizontal:
+    xxsmall 2px,
+    xsmall 4px,
+    small 8px,
+    medium 12px,
+    large 16px,
+    xlarge 20px,
+    xxlarge 24px;
+
+@function padding-vertical ($size:medium) {
+    @each $value in $padding-vertical {
+        @if nth($value, 1) == $size {
+            @return nth($value, 2);
+        }
+    }
+}
+
+@function padding-horizontal ($size:medium) {
+    @each $value in $padding-horizontal {
+        @if nth($value, 1) == $size {
+            @return nth($value, 2);
+        }
+    }
+}
+
+@function padding ($size:medium) {
+    @return padding-vertical($size) padding-horizontal($size);
+}
+
+.padding-xxsmall { padding: padding(xxsmall); }
+.padding-xsmall { padding: padding(xsmall); }
+.padding-small { padding: padding(small); }
+.padding-medium { padding: padding(medium); }
+.padding-large { padding: padding(large); }
+.padding-xlarge { padding: padding(xlarge); }
+.padding-xxlarge { padding: padding(xxlarge); }
+
+$margin:
+    xxsmall 4px,
+    xsmall 6px,
+    small 10px,
+    medium 14px,
+    large 18px,
+    xlarge 22px,
+    xxlarge 26px;
+
+@function margin ($size:medium) {
+    @each $value in $margin {
+        @if nth($value, 1) == $size {
+            @return nth($value, 2);
+        }
+    }
+}
+
+.margin-xxsmall { margin: margin(xxsmall); }
+.margin-xsmall { margin: margin(xsmall); }
+.margin-small { margin: margin(small); }
+.margin-medium { margin: margin(medium); }
+.margin-large { margin: margin(large); }
+.margin-xlarge { margin: margin(xlarge); }
+.margin-xxlarge { margin: margin(xxlarge); }
+
+// Function for defining width in terms of grid columns
+@function columns ($cols:1, $adjust:0) {
+    @return ($cols * ($column + $gutter) - $gutter) - $adjust;
+}
+
+// Column styles
+
+@mixin column ($layout:default) {
+
+    // Default
+    @include clearfix;
+    float: left;
+    margin-left: $gutter;
+    width: columns(1);
+    &.first,
+    &:first-child { margin-left: 0; }
+
+}
+
+.column {
+
+    @include column;
+
+    // Layouts
+    &.half,
+    &.six { width: columns(6); }
+    &.third,
+    &.four { width: columns(4); }
+    &.three,
+    &.fourth { width: columns(3); }
+    &.two,
+    &.sixth { width: columns(2); }
+
+    &.sixteen { width: columns(16); }
+    &.fifteen { width: columns(15); }
+    &.fourteen { width: columns(14); }
+    &.thirteen { width: columns(13); }
+    &.twelve { width: columns(12); }
+    &.eleven { width: columns(11); }
+    &.ten { width: columns(10); }
+    &.nine { width: columns(9); }
+    &.eight { width: columns(8); }
+    &.seven { width: columns(7); }
+    &.five { width: columns(5); }
+    &.one { width: columns(1); }
+
+}
+
+.full-width .column {
+
+    &.half { width: columns(8); }
+    &.third {
+        margin-left: $column + 2 * $gutter;
+        width: columns(4);
+        &.first,
+        &:first-child {
+            margin-left: $column + $gutter;
+        }
+    }
+    &.fourth { width: columns(4); }
+    &.fifth {
+        margin-left: $column + 2 * $gutter;
+        width: columns(2);
+        &.first,
+        &:first-child {
+            margin-left: $column + $gutter;
+        }
+    }
+
+}
+
+// Row styles
+
+.row {
+    @include clearfix;
+    margin: margin(medium) 0;
+}
+
+.block {
+    @include clearfix;
+}

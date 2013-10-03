@@ -1,0 +1,84 @@
+@import "h5bp";
+@include h5bp-normalize;
+@include h5bp-base-styles;
+@include h5bp-chromeframe;
+
+// Additional resets
+.ir {
+    overflow: hidden;
+    border: 0;
+    background-color: transparent;
+    *text-indent: -9999px;
+    &:before {
+        display: block;
+        width: 0;
+        height: 100%;
+        content: "";
+    }
+}
+
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+@mixin visuallyhidden {
+
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    margin: -1px;
+    padding: 0;
+    width: 1px;
+    height: 1px;
+    border: 0;
+
+    &.focusable:active,
+    &.focusable:focus {
+        position: static;
+        overflow: visible;
+        clip: auto;
+        margin: 0;
+        width: auto;
+        height: auto;
+    }
+
+}
+.visuallyhidden {
+    @include visuallyhidden;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+@mixin clearfix {
+    *zoom: 1;
+    &:before, &:after {
+        display: table;
+        content: " ";
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+.clearfix {
+    @include clearfix;
+}
+
+select, button, input, textarea, nav, menu {
+    @include reset-box-model;
+    &:focus {
+        outline: none;
+    }
+}
+
+::-moz-focus-inner {
+    outline: 0;
+}
+
+ul, ol, li {
+    @include reset-list-style;
+    @include reset-box-model;
+}

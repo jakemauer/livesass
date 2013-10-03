@@ -1,0 +1,69 @@
+$bullet-xsmall: 10px;
+$bullet-small: 12px;
+
+ol, ul {
+    padding: 0 0 0 $gutter;
+    li {
+        position: relative;
+        margin: 0 0 margin(small);
+        &:before {
+            position: absolute;
+            left: -1 * $gutter;
+            color: $text-color-secondary;
+        }
+        ul, ol {
+            margin: margin(small) 0;
+        }
+    }
+    &.reset {
+        margin: 0;
+        padding-left: 0;
+        li {
+            position: static;
+            margin-bottom: 0;
+            &:before {
+                content: none;
+            }
+        }
+        ol, ul { margin: 0; }
+    }
+    // Lists with alternating color backgrounds
+    &.striped {
+        @extend ul.reset;
+        @extend .striped;
+        li {
+            border-top: $border-light;
+            &:first-child {
+                border-top-style: hidden;
+            }
+        }
+    }
+    // Lists bulleted with icons
+    .icons {
+        @extend ul.reset;
+        margin-left: (30em/14);
+        & > li { position: relative; }
+        .icon-li {
+            position: absolute;
+            left: -1 * (30em/14);
+            width: (30em/14);
+            text-align: center;
+            line-height: inherit;
+        }
+    }
+}
+
+ol {
+    counter-reset: li;
+    li:before {
+        content: counter(li);
+        counter-increment: li;
+    }
+}
+ul {
+    li:before {
+        @include appdirect-icon();
+        @include icon-fixed;
+        content: $angle-right;
+    }
+}

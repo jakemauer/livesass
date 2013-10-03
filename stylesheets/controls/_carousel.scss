@@ -1,0 +1,101 @@
+.carousel {
+    position: relative;
+    padding-bottom: height(small);
+    min-height: font-leading(medium) * 6;
+    .content {
+        position: relative;
+        overflow: hidden;
+        margin: 0 ($column + $gutter) margin(medium);
+        & > .item {
+            @extend %slide;
+            position: relative;
+            display: none;
+
+            &.active,
+            &.next,
+            &.prev {
+                display: block;
+            }
+
+            &.active {
+                left: 0;
+                &.left {
+                    left: -100%;
+                }
+                &.right {
+                    left: 100%;
+                }
+            }
+
+            &.next,
+            &.prev {
+                position: absolute;
+                top: 0;
+                width: 100%;
+            }
+
+            &.next {
+                left: 100%;
+                &.left {
+                    left: 0;
+                }
+            }
+
+            &.prev {
+                left: -100%;
+                &.right {
+                    left: 0;
+                }
+            }
+        }
+    }
+    .pager {
+        @extend nav.inline;
+        position: absolute;
+        top: ((image-size(large) - height(small)) / 2);
+        margin: 0;
+        width: 100%;
+        text-align: center;
+        .arrow {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 0;
+            &.prev {
+                right: auto;
+                left: 0;
+            }
+        }
+    }
+    .pager {
+        @extend nav.inline;
+        position: absolute;
+        bottom: 0;
+        margin: 0;
+        width: 100%;
+        text-align: center;
+        ol {
+            margin: 0;
+            height: height(small);
+            line-height: height(small);
+            li {
+                margin: 0;
+                &:first-child a {
+                    margin-left: 0;
+                }
+            }
+            a {
+                @include inline-block;
+                @include border-radius($bullet-small);
+                margin-left: margin(small);
+                padding: 0;
+                width: $bullet-xsmall;
+                height: $bullet-xsmall;
+                background-color: $gray4;
+            }
+            .active a {
+                background-color: $gray2;
+            }
+        }
+    }
+}

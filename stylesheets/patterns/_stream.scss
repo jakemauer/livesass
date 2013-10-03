@@ -1,0 +1,80 @@
+.stream {
+    @include box;
+    .events {
+        @extend ul.striped;
+        .icon {
+            color: icon-color(gray);
+        }
+    }
+    .event {
+        @include media;
+        margin-top: 0;
+        padding: margin(medium);
+        padding-left: 0;
+        .image.medium {
+            margin-right: $gutter;
+        }
+        .text {
+            float: left;
+            margin-left: auto;
+        }
+        .details .image {
+            float: none;
+            margin-right: 0;
+        }
+        & > .icon-fixed {
+            display: block;
+            float: left;
+            width: columns(1, $border-weight);
+            line-height: image-size(medium);
+        }
+        .details {
+            float: right;
+            width: columns(3, $border-weight + margin(medium));
+            text-align: right;
+            line-height: image-size(xsmall);
+            .relate {
+                margin: 0 margin(xsmall);
+                .icon {
+                    vertical-align: middle;
+                }
+            }
+        }
+    }
+    .text {
+        width: columns(7);
+    }
+    time {
+        display: block;
+        margin: 0;
+    }
+    &.v1 {
+        .event > .icon-fixed {
+            line-height: font-leading(medium);
+        }
+        .text {
+            width: columns(9, -1 * $gutter);
+        }
+        time {
+            @include font(small);
+            float: right;
+            width: columns(2, $border-weight + margin(medium));
+            text-align: right;
+            line-height: font-leading(medium);
+            .icon {
+                margin-left: margin(xxsmall);
+            }
+        }
+        .details {
+            @include media;
+            margin: 0;
+            padding: 0 margin(medium) margin(medium) columns(1);
+        }
+    }
+}
+button.more {
+    display: block;
+    float: right;
+    margin-top: margin(medium);
+    margin-right: 0;
+}

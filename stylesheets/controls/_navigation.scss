@@ -1,0 +1,192 @@
+menu {
+    @include clearfix;
+}
+
+nav {
+
+    ul {
+        @extend ul.reset;
+        ul a {
+            padding-left: padding-horizontal(medium) * 2;
+        }
+    }
+
+    ol {
+        @extend ol.reset;
+    }
+
+    a {
+        display: block;
+        padding: padding(medium);
+    	color: inherit;
+        &:hover {
+            color: inherit;
+        }
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .active > a {
+        cursor: default;
+    }
+
+    &.inline {
+        margin: 0 0 margin(medium);
+        font-size: 0;
+        li {
+            @include inline-block;
+            font-size: font-size(medium);
+        }
+    }
+
+    &.breadcrumbs {
+        @extend nav.inline;
+        @include transition(border-color $transition-time linear);
+        @include font(small);
+        width: 100%;
+        border-top: $border-weight solid $border-color;
+        border-bottom: $border-weight solid $border-color;
+        li {
+            font-size: font-size(small);
+            a,
+            span {
+                @include transition(color $transition-time linear);
+                position: relative;
+                margin-right: margin(medium);
+                padding: padding(large);
+                color: $text-color-secondary;
+                &:before,
+                &:after {
+                    position: absolute;
+                    top: -1px;
+                    display: block;
+                    border: (( font-leading(small) + 2 * padding-vertical(large) + 2 * $border-weight ) / 2) solid transparent;
+                    content: "";
+                }
+                &:after{
+                    @include transition(border-color $transition-time linear);
+                    right: -1 * 28px;
+                    z-index: 1;
+                    border-left: margin(small) solid $border-color;
+                }
+                &:before{
+                    right: -1 * 28px + 1px;
+                    z-index: 2;
+                    border-left: margin(small) solid $white;
+                }
+                &:hover {
+                    color: $text-color;
+                }
+            }
+            &:first-child a{
+                padding-left: 0;
+            }
+            &:last-child a:after,
+            &:last-child span:after {
+                display: none;
+            }
+        }
+    }
+}
+
+// Simple vertical navigation
+.sidebar {
+    nav {
+        margin-bottom: margin(large);
+        h5 {
+            margin-bottom: 0;
+            border-bottom: $border-light;
+        }
+    }
+}
+
+// Boxed vertical navigation
+nav.vertical {
+
+    margin-bottom: 0;
+
+    h5 {
+        border-bottom: 0;
+    }
+
+    a {
+        border-top: $border-light;
+        vertical-align: middle;
+        &:hover {
+            background-color: $gray5;
+            .badge {
+                background-color: $color-secondary;
+            }
+        }
+    }
+    .first > a,
+    ul:first-child > li:first-child > a {
+        border-top: 0;
+    }
+    .last > a,
+    &:last-child li:last-child > a {
+        @include border-radius(0 0 $border-radius $border-radius);
+    }
+    &:first-child li:first-child > a {
+        @include border-radius($border-radius $border-radius 0 0);
+    }
+    .badge {
+        @extend .badge.medium;
+        float: right;
+    }
+    .icon-fixed {
+        margin-right: margin(xxsmall);
+    }
+    .active > a {
+        @include box-shadow(0 0 0 1px $color-primary);
+        position: relative;
+        border-top-color: tint($color-primary, 20%);
+        background-color: tint($color-primary, 20%);
+        color: $white;
+    }
+    .expand {
+        & > a {
+            padding-left: padding-horizontal(medium) - ($icon-font-ratio * $baseline / 2);
+            &:before {
+                @include appdirect-icon();
+                @include icon-fixed;
+                color: $text-color-tertiary;
+                content: $triangle-small-right;
+            }
+            &.active:before {
+                content: $triangle-small-down;
+            }
+        }
+        .collapse {
+            @include box-shadow($shadow-inset);
+            background-color: $gray6;
+            border-bottom: $border-light;
+            a {
+                color: $text-color-secondary;
+                &:hover {
+                    background-color: $gray4;
+                }
+            }
+            li:first-child {
+                border-top: $border-default;
+                & > a {
+                    border-top-style: hidden;
+                }
+            }
+        }
+        .add {
+            border-top: $border-light;
+            padding-left: padding-horizontal(medium) * 2;
+            button {
+                margin: margin(medium) 0;
+            }
+        }
+        & > .active + .collapse {
+            border-bottom-color: $border-color;
+        }
+        & + li > a {
+            border-top-style: hidden;
+        }
+    }
+}

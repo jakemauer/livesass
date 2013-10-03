@@ -1,0 +1,91 @@
+/* TABLES */
+
+.table {
+
+    @include box(controls);
+    margin: margin(medium) 0;
+    text-align: left;
+
+    &.truncate {
+        table {
+            table-layout: fixed;
+        }
+        th,
+        td {
+            @include truncate;
+        }
+    }
+    &.hover .hover {
+        border-color: tint($blue, 75%);
+        background: tint($blue, 90%);
+        color: shade($blue, 15%);
+        cursor: pointer;
+    }
+
+    .header .controls {
+        position: static;
+        top: auto;
+        right: auto;
+        text-align: left;
+        button:first-child {
+            margin-left: 0;
+        }
+        .search-field {
+            position: absolute;
+            top: margin(small);
+            right: margin(small);
+        }
+    }
+
+    table {
+        @include font(small);
+        width: 100%;
+    }
+    th,
+    td {
+        padding: padding(medium);
+        vertical-align: top;
+        &.status {
+            white-space: nowrap;
+        }
+    }
+    thead {
+        border-bottom: $border-default;
+        color: $text-color-secondary;
+        th {
+            font-weight: normal;
+            &.active {
+                color: $text-color;
+                font-weight: bold;
+            }
+        }
+    }
+    tbody {
+        tr {
+            border-top: $border-light;
+            &:first-child {
+                border-top-width: 0;
+            }
+            &.inactive {
+                color: $text-color-tertiary;
+                .gem {
+                    @include box-shadow(none);
+                }
+            }
+        }
+    }
+
+    &.users {
+        td {
+            background: transparent;
+            vertical-align: middle;
+            &.image {
+                padding: margin(small);
+            }
+        }
+        .context.small .toggle .icon-cog {
+            margin-left: 0;
+        }
+    }
+
+}

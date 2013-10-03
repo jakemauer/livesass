@@ -1,0 +1,478 @@
+.example {
+    @include border-radius($border-radius);
+    margin: margin(medium) 0 margin(large);
+    border: $border-default;
+    border-bottom-style: hidden;
+    & > .header {
+        @include clearfix;
+        @include border-radius($border-radius $border-radius 0 0);
+        @include key;
+        padding: padding(medium);
+        border-bottom: $border-default;
+        span {
+            float: left;
+        }
+        code {
+            float: right;
+            margin: 0;
+            color: $text-color-secondary;
+        }
+    }
+    .class code {
+        @extend code.block;
+    }
+    .view {
+        @include clearfix;
+        padding: margin(xxlarge) ($gutter + $column);
+        border-bottom: $border-default;
+    }
+    &.table {
+        border-bottom-style: solid;
+        tbody {
+            @include font(medium);
+        }
+        td {
+            padding: margin(small);
+            &.view {
+                border-bottom: 0;
+            }
+            &.unicode,
+            &.class {
+                code {
+                    margin: 0;
+                }
+            }
+            &.code {
+                @include border-radius(0);
+                padding: 0;
+                width: columns(6, $border-weight + $column);
+                border-bottom: 0;
+            }
+        }
+    }
+    &.tab {
+        padding: 0;
+        border-bottom: 0;
+    }
+    .code {
+        @include font(small);
+        position: relative;
+        padding: 0;
+        border-bottom: $border-default;
+        background-color: $gray5;
+        button {
+            @include transition(opacity $transition-time linear);
+            position: absolute;
+            top: margin(small);
+            right: 0;
+            opacity: 0;
+        }
+        .highlight {
+            border: 0;
+        }
+        &.hover button {
+            opacity: 1;
+        }
+    }
+    .code:last-child {
+        @include border-radius(0 0 $border-radius $border-radius);
+    }
+    &.borderless {
+        border: 0;
+        .header {
+            padding-right: 0;
+            padding-left: 0;
+        }
+        .view {
+            padding-right: 0;
+            padding-left: 0;
+            border-bottom: 0;
+        }
+        .code {
+            @include border-radius($border-radius);
+            border: $border-default;
+        }
+    }
+}
+
+.guide {
+    header .wrapper nav.navigation {
+        width: columns(16, image-width($logo_mark) + padding-horizontal(xxlarge) * 2 + $border-weight * 2);
+        text-align: right;
+        & > ul > li:first-child {
+            border-left: 1px solid shade($black, 40%);
+        }
+        .menu,
+        a {
+            font-size: font-size(small);
+        }
+    }
+    .highlight {
+        overflow: auto;
+        max-height: $height-max;
+    }
+    .headline {
+        @include font(xlarge);
+        margin-bottom: margin(large);
+        padding-bottom: margin(large);
+        border-bottom: $border-default;
+        color: $text-color-secondary;
+        h1 {
+            margin-top: margin(medium);
+            color: $text-color;
+            font-size: 36px;
+        }
+    }
+    section {
+        margin: 0;
+        padding: margin(medium) 0;
+        border-top: $border-default;
+        & > h2:first-child,
+        & > h3:first-child {
+            margin-top: 0;
+        }
+        &.placeholder {
+            .example {
+                border: 0;
+            }
+            .view {
+                padding: margin(medium) 0;
+                border-top: 0;
+                text-align: center;
+            }
+        }
+    }
+    h3,
+    h4 {
+        @include clearfix;
+        span {
+            float: left;
+        }
+        code {
+            @extend code.block;
+            float: right;
+            margin: 0;
+            font-weight: normal;
+        }
+    }
+    .column.help {
+        @include box-sizing(border-box);
+        width: columns(6, 2 * $border-weight);
+        .icon {
+            margin-right: margin(xsmall);
+        }
+    }
+    .column.rule {
+        width: columns(6);
+        p:first-child {
+            margin-top: margin(small);
+        }
+    }
+}
+
+/* Grid Overlay */
+
+body > .grid-button {
+    position: fixed;
+    bottom: margin(medium);
+    left: margin(medium);
+    z-index: 99999;
+}
+#grid {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 99998;
+    display: none;
+    overflow: hidden;
+    .wrapper {
+        position: relative;
+        margin: 0 auto;
+        width: columns(16);
+        height: 100%;
+    }
+    .columns {
+        width: 100%;
+        height: 100%;
+    }
+    .column {
+        height: 100%;
+        background: transparentize($blue,.8);
+    }
+    .rows {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    .row {
+        @include box-sizing(border-box);
+        margin: 0;
+        width: 100%;
+        height: $baseline;
+        border-bottom: 1px solid transparentize($blue,.7);
+    }
+}
+.layout {
+    @include font(xxlarge);
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 99998;
+    display: none;
+    overflow: hidden;
+    color: transparentize($blue,.7);
+    text-align: center;
+    .wrapper {
+        position: relative;
+        margin: 0 auto;
+        width: columns(16);
+        height: 100%;
+    }
+    .column {
+        padding: ($baseline * 20) 0;
+        height: 100%;
+        background: transparentize($blue,.8);
+    }
+}
+#layout-select {
+    position: fixed;
+    bottom: margin(medium);
+    left: 2 * margin(medium) + height(small);
+    z-index: 99999;
+}
+
+#theme-picker {
+    position: fixed;
+    bottom: margin(medium);
+    left: 5 * margin(medium) + height(small);
+    z-index: 99999;
+}
+
+/* Color Palette */
+#colors {
+    @include clearfix;
+    .color {
+        @include border-radius($border-radius);
+        margin-bottom: $gutter;
+        padding: padding(xlarge);
+        color: $white;
+        h4 {
+            margin-top: 0;
+        }
+        &.primary {
+            background: $color-primary;
+        }
+        &.secondary {
+            background: $color-secondary;
+        }
+        &.default {
+            background: $color-default;
+            color: inherit;
+        }
+        &.red {
+            background: $red;
+        }
+        &.yellow {
+            background: $yellow;
+            color: inherit;
+        }
+        &.green {
+            background: $green;
+        }
+        &.blue {
+            background: $blue;
+        }
+        &.black {
+            background: $black;
+        }
+        &.white {
+            border: $border-default;
+            background: $white;
+            color: inherit;
+        }
+        &.deepGray {
+            background: $gray1;
+        }
+        &.darkGray {
+            background: $gray2;
+        }
+        &.gray {
+            background: $gray3;
+        }
+        &.midGray {
+            background: $gray4;
+            color: inherit;
+        }
+        &.lightGray {
+            background: $gray5;
+            color: inherit;
+        }
+        &.faintGray {
+            background: $gray6;
+            color: inherit;
+        }
+        code {
+            margin: 0;
+        }
+    }
+    .example {
+        .view {
+            padding: padding(xlarge);
+        }
+    }
+    p {
+        margin: 0 0 $gutter 0;
+    }
+}
+
+#colors-brand {
+    .black {
+        background: $color-brand-black;
+    }
+    .coolgray11 {
+        background: $color-brand-coolgray11;
+    }
+    .coolgray6 {
+        background: $color-brand-coolgray6;
+    }
+    .coolgray4 {
+        background: $color-brand-coolgray4;
+        color: inherit;
+    }
+    .coolgray1 {
+        background: $color-brand-coolgray1;
+        color: inherit;
+    }
+    .white {
+        background: $color-brand-white;
+    }
+    .blue3035 {
+        background: $color-brand-blue3035;
+    }
+    .blue7707 {
+        background: $color-brand-blue7707;
+    }
+    .blue7703 {
+        background: $color-brand-blue7703;
+    }
+    .blue2975 {
+        background: $color-brand-blue2975;
+    }
+    .green368 {
+        background: $color-brand-green368;
+    }
+    .green382 {
+        background: $color-brand-green382;
+    }
+}
+
+#alerts-system {
+    .wrapper {
+        width: auto;
+    }
+}
+
+#text-input-widths {
+    .tab {
+        border: 0;
+    }
+}
+
+#header-primary-settings {
+    header nav.settings {
+        margin-right: margin(small);
+    }
+}
+#header-secondary {
+    header nav.settings {
+        margin-right: margin(small);
+    }
+    header nav.subnav {
+        padding-left: padding-horizontal(xxlarge);
+    }
+}
+
+#footer {
+    footer {
+        position: static;
+        margin-top: auto;
+    }
+    nav.links {
+        @include inline-block;
+        float: right;
+    }
+}
+
+#breadcrumbs {
+    footer {
+        position: static;
+        margin-top: auto;
+    }
+    .breadcrumbs {
+        padding-left: padding-horizontal(large);
+    }
+}
+
+#grid-layout {
+    .row .help {
+        background-color: tint($blue, 80%);
+    }
+    .column .table {
+        margin-top: 0;
+    }
+}
+
+#paddings {
+    p {
+        & > span {
+            display: inline;
+            background-color: tint($blue, 80%);
+            span {
+                background-color: $white;
+            }
+        }
+    }
+}
+
+#margins {
+    .block {
+        background-color: tint($blue, 80%);
+        p {
+            background-color: $white;
+        }
+    }
+}
+
+#leadings {
+    p {
+        margin: 0;
+        background-color: tint($blue, 80%);
+    }
+}
+
+#heights {
+    .block {
+        background-color: tint($blue, 80%);
+    }
+}
+
+.foundations_coding_style {
+    .column.rule {
+        width: columns(8);
+    }
+    .column.help {
+        width: columns(4, 2 * $border-weight);
+    }
+}
+
+.foundations_iconography {
+    td.view .icon {
+        @include icon-fixed;
+    }
+}

@@ -1,0 +1,63 @@
+// should we get rid of this?
+
+.upload-field {
+    label {
+        @include border-radius($border-radius);
+        position: relative;
+        padding: margin(small);
+        border: $border-default;
+        background-color: $gray6;
+    }
+    input[type="file"] {
+        position: absolute;
+        left: -99999px;
+    }
+    .file {
+        line-height: height(medium);
+    }
+    .remove {
+        position: absolute;
+        top: margin(small);
+        right: margin(small);
+        margin: 0;
+    }
+    &.dragging {
+        label {
+            padding: margin(large);
+            height: image-size(small) + font-leading(medium);
+            border-width: 2px;
+            border-style: dashed;
+            color: $text-color-tertiary;
+            text-align: center;
+            &:before {
+                @include icon($drop);
+                display: block;
+                font-size: image-size(small);
+                line-height: image-size(small);
+            }
+            &:after {
+                display: block;
+                content: "Drop Image Here";
+            }
+        }
+        button {
+            display: none;
+        }
+    }
+    &.over {
+        label {
+            border-color: $border-color-dark;
+            &:before {
+                color: $text-color;
+            }
+            &:after {
+                color: $text-color;
+            }
+        }
+    }
+    &.dragging.file {
+        label:after {
+            content: "Drop File Here";
+        }
+    }
+}

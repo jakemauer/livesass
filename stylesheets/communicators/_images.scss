@@ -1,0 +1,165 @@
+$image-size:
+    xsmall 36px,
+    small 48px,
+    medium 72px,
+    large 120px,
+    xlarge 168px;
+$image-default-background: $gray4;
+$image-default-color: $gray3;
+
+@function image-size ($size:medium) {
+    @each $value in $image-size {
+        @if nth($value, 1) == $size {
+            @return nth($value, 2);
+        }
+    }
+}
+
+// Product and image icons/avatars/images
+.image {
+    @include inline-block;
+    text-align: center;
+
+    &.product,
+    &.company,
+    &.user {
+        @include border-radius(8%);
+        background-color: $image-default-background;
+        color: $image-default-color;
+        font-family: $font-family-title;
+        & > * {
+            @include border-radius(8%);
+        }
+    }
+    .overlay {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    &.product,
+    &.company {
+        @include box-shadow($shadow-light);
+        position: relative;
+        background-color: $white;
+        img {
+            margin: 18%;
+            width: 64%;
+            height: 64%;
+        }
+        .overlay {
+            @include background-image(linear-gradient(rgba($black, 0),rgba($black, 0.02)));
+            @include box-shadow($highlight-inset);
+            @include box-sizing(border-box);
+            position: absolute;
+            border: $border-default;
+            background-color: rgba($black, 0.02);
+        }
+        &.launchable {
+            @include box-shadow($shadow-medium);
+            .overlay {
+                @include background-image(linear-gradient(rgba($black, 0),rgba($black, 0.1)));
+                @include box-shadow(inset 0 2px 0 $white);
+                border-color: $border-color-dark;
+                background-color: rgba($black, 0.04);
+            }
+            .hover & {
+                @include box-shadow($shadow-overlay);
+                .overlay {
+                    background-color: transparent;
+                }
+            }
+        }
+        &.disabled {
+            @include box-shadow(none);
+            opacity: 0.5;
+            cursor: default;
+            .overlay {
+                @include background-image(none);
+            }
+            &.hover,
+            &:hover,
+            .hover & {
+                @include box-shadow(none);
+                .overlay {
+                    background-color: rgba($black, 0.04);
+                }
+            }
+        }
+
+    }
+
+    &.user {
+
+        background-color: $color-secondary;
+        color: $white;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+
+        &.pending {
+            background-color: $image-default-background;
+            color: $image-default-color;
+        }
+
+    }
+
+    &.xsmall,
+    &.small,
+    &.medium,
+    &.large,
+    &.xlarge {
+        img {
+            max-width: 100%;
+            max-height: 100%;
+            vertical-align: top;
+        }
+    }
+
+    // Fixed sizes
+    &.xsmall {
+        width: image-size(xsmall);
+        height: image-size(xsmall);
+        font-size: font-size(small);
+        line-height: image-size(xsmall);
+        .icon {
+            font-size: (1/2) * image-size(xsmall);
+        }
+    }
+    &.small {
+        width: image-size(small);
+        height: image-size(small);
+        font-size: font-size(medium);
+        line-height: image-size(small);
+        .icon {
+            font-size: (1/2) * image-size(small);
+        }
+    }
+    &.medium {
+        width: image-size(medium);
+        height: image-size(medium);
+        font-size: font-size(large);
+        line-height: image-size(medium);
+        .icon {
+            font-size: (1/2) * image-size(medium);
+        }
+    }
+    &.large {
+        width: image-size(large);
+        height: image-size(large);
+        font-size: font-size(xlarge);
+        line-height: image-size(large);
+        .icon {
+            font-size: (1/2) * image-size(large);
+        }
+    }
+    &.xlarge {
+        width: image-size(xlarge);
+        height: image-size(xlarge);
+        font-size: font-size(xxlarge);
+        line-height: image-size(xlarge);
+        .icon {
+            font-size: (1/2) * image-size(xlarge);
+        }
+    }
+
+}

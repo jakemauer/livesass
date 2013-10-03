@@ -1,0 +1,110 @@
+$selector-size: $bullet-small;
+$selector-icon-size: height(medium);
+
+.selector,
+.checkbox,
+.radio {
+    @include clearfix;
+    display: block;
+    color: $text-color-secondary;
+    font-weight: normal;
+    cursor: pointer;
+    &.active {
+        color: $text-color;
+    }
+
+    // Checkbox and radio
+    input {
+        margin-right: margin(xsmall);
+        cursor: pointer;
+    }
+
+    .input {
+        display: block;
+        float: left;
+        width: $selector-size;
+    }
+    .value {
+        display: block;
+        margin-left: $selector-size + margin(small);
+    }
+
+    // Small
+    &.small {
+        @include font(small);
+    }
+
+    // Inline
+    &.inline {
+        @include inline-block;
+        margin-right: margin(small);
+    }
+
+    // Bar
+    &.bar {
+        @include border-radius($border-radius);
+        @include button-color;
+        @include box-sizing(border-box);
+        padding: padding(medium);
+        // Selected
+        &.active,
+        &:active {
+            .attachment {
+                @include box-shadow(none);
+                top: -1px;
+                right: -1px;
+                border-left-color: shade($color-default,40%);
+            }
+        }
+    }
+}
+
+menu.selector {
+
+    &, &.small {
+        font-size: 0;
+    }
+
+    button {
+        @include border-radius(0);
+        @include transition(position $transition-time linear);
+        margin: 0;
+        margin-left: -1px;
+        &.first, &:first-child {
+            @include border-radius($border-radius 0 0 $border-radius);
+            &.active {
+                @include box-shadow(inset 2px 0 6px -2px rgba($black, 0.4), inset 0 2px 6px -2px rgba($black, 0.4), inset -2px 0 0 0 shade($color-default, 20%));
+            }
+        }
+        &.last, &:last-child {
+            @include border-radius(0 $border-radius $border-radius 0);
+            &.active {
+                @include box-shadow(inset -2px 0 6px -2px rgba($black, 0.4), inset 0 2px 6px -2px rgba($black, 0.4), inset -2px 0 0 0 shade($color-default, 20%));
+            }
+        }
+
+        &.active {
+            @include box-shadow(inset 0 2px 6px -2px rgba($black, 0.4), inset -2px 0 0 0 shade($color-default, 20%), inset 2px 0 0 0 shade($color-default, 20%));
+            position: relative;
+        }
+    }
+
+    &.inset button {
+        &.first, &:first-child {
+            &.active {
+                @include box-shadow($shadow-inset, $highlight-drop);
+
+            }
+        }
+        &.last, &:last-child {
+            &.active {
+                @include box-shadow($shadow-inset, $highlight-drop);
+            }
+        }
+
+        &.active {
+            @include box-shadow($shadow-inset, $highlight-drop);
+        }
+    }
+
+}

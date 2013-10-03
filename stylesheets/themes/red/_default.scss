@@ -1,0 +1,95 @@
+// Logos - Originally found in _layout.scss
+$logo: "logo.png";
+$logo-mark: "logo_mark.png";
+
+// Font families - Originially found in foundations/_typograpy.scss
+$font-family-base: "Helvetica Neue", Helvetica, sans-serif;
+$font-family-title: Palatino, "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family-brand: "Aaux Next";
+
+// ADD THIS SECTION BACK TO _COLORS
+// Colors - Originally found in foundations/_color.scss
+$color-brand-black: #ff0000;
+$color-brand-coolgray11: rgb(84,86,91);
+$color-brand-coolgray6: rgb(168,168,170);
+$color-brand-coolgray4: rgb(188,188,188);
+$color-brand-coolgray1: rgb(218,217,215);
+$color-brand-white: rgb(251,251,251);
+$color-brand-blue3035: rgb(0,62,82);
+$color-brand-blue7707: rgb(0,96,128);
+$color-brand-blue7703: rgb(0,154,191);
+$color-brand-blue2975: rgb(150,213,234);
+$color-brand-green368: rgb(118,189,34);
+$color-brand-green382: rgb(195,214,0);
+
+// system base colors
+$black: rgb(47,52,64);
+$white: rgb(254,252,249);
+$red: rgb(234,96,69);
+$yellow: rgb(248,202,77);
+$green: rgb(53,145,92);
+$blue: rgb(63,86,102);
+
+// ADD THIS SECTION BACK TO _COLORS
+// system brand colors
+$color-primary: rgb(63,86,102);
+$color-secondary: rgb(47,52,64);
+$color-default: rgb(245,229,192);
+
+// ADD THIS SECTION BACK TO _COLORS
+// Grays
+$gray1: tint($black, 20%);
+$gray2: tint($black, 53%);
+$gray3: tint($black, 75%);
+$gray4: tint($black, 90%);
+$gray5: tint($black, 95%);
+$gray6: tint($black, 97%);
+
+// ADD THIS SECTION BACK TO _COLORS
+// element colors
+$text-color: $gray1;
+$text-color-secondary: $gray2;
+$text-color-tertiary: $gray3;
+
+$link-color: $color-primary;
+$link-color-change: $color-secondary;
+
+html, body, select, input, textarea, button { color: $text-color; }
+
+// This should probably be incorporated into the UIF and made variables
+body {  
+  background: $white;
+  
+  ::selection {
+    background-color: rgb(245,229,192);
+    color: $black;
+    text-shadow: none;
+  }
+}
+
+
+// Lighting
+$shadow-overlay: 0 3px 10px 0 rgba($black, 0.125);       // Affects: Modals
+$shadow-heavy: 0 2px 3px 0 rgba($green, .925);          // Affects: Percentage Bars
+$shadow-medium: 0 2px 6px -1px rgba($black, 0.2);        // Affects: Selector Drop-down
+$shadow-light: 0 1px 3px -1px rgba($green, 0.92);       // Affects: Secret Buttons, Secondary Header, App Icon
+
+$shadow-inset: inset 0 1px 3px 0 rgba($yellow, 0.91);    // Affects: Input Fields, Button Active State
+$shadow-inset-heavy: inset 0 1px 3px 0 rgba($red, 0.92); // Affects: Input Focus
+
+$highlight-inset: inset 0 1px 0 0 rgba($red, 0.95);    // Affects: Secret Buttons, Containers
+$highlight-drop: 0 1px 0 0 rgba($yellow, 0.95);        // Affects: Input Fields, Secret Buttons
+
+// Border styles
+$border-weight: 1px;
+$border-radius-small: 1px; // Labels
+$border-radius: 1px !default; // Tables, Containers, Buttons, Alerts, Percentage Bars, Input Fields
+$border-radius-large: 10px; // Form Dialog, Modal
+
+// ADD THIS SECTION BACK - Shouldn't be cutomizable
+$border-color: $gray3;
+$border-color-light: $gray4;
+$border-color-dark: $gray2;
+$border-default: $border-weight solid $border-color;
+$border-light: $border-weight solid $border-color-light;
+$border-dark: $border-weight solid $border-color-dark;
