@@ -13,12 +13,17 @@ end
 defaults = '@import "themes/_defaults.scss"'
 base = '@import "base.scss"'
 
+get '/' do
+  "Hellos"
+end
 
 
 post '/compile-sass' do
   sass = params[:sass]
 
   begin
+    # template = File.read("template.css.scss")
+    template = defaults + params[:sass] + base
     sass_engine = Sass::Engine.new(template, :syntax => :scss)
     sass_engine.render
   rescue Sass::SyntaxError => e
