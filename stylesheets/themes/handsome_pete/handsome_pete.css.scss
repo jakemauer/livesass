@@ -1,0 +1,79 @@
+@import "../default";
+
+$logo: "logo.png";
+$logo-mark: "logo_mark.png";
+
+// Font families
+$font-family-base: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+$font-family-title: Futura, "Trebuchet MS", Arial, sans-serif;
+
+// system base colors
+$black: #013440;
+$white: rgb(254,252,249);
+$red: rgb(234,96,69);
+$yellow: rgb(248,202,77);
+$green: rgb(118,189,34);
+$blue: rgb(63,86,102);
+
+// system brand colors
+$color-primary: #35ad81;
+$color-secondary: #1a4e88;
+$color-default: #f2dc99;
+
+// Grays
+$gray1: tint($black, 20%);
+$gray2: tint($black, 53%);
+$gray3: tint($black, 75%);
+$gray4: tint($black, 90%);
+$gray5: tint($black, 95%);
+$gray6: tint($black, 97%);
+
+// element colors
+$text-color: $gray1;
+$text-color-secondary: $gray3;
+$text-color-tertiary: $gray4;
+
+$link-color: $color-primary;
+$link-color-change: $color-secondary;
+
+html, body, select, input, textarea, button { color: $text-color; }
+
+// Lighting
+$shadow-overlay: 0 3px 10px 0 rgba($black, 0.125);
+$shadow-heavy: none;
+$shadow-medium: none;
+$shadow-light: none;
+
+$shadow-inset-heavy: none;
+$shadow-inset: none;
+
+$highlight-inset: none;
+$highlight-drop: none;
+
+// Border styles
+$border-weight: 2px;
+$border-radius-small: 5px;
+$border-radius: 6px !default;
+$border-radius-large: 8px;
+$border-color: $gray4;
+$border-color-light: $gray4;
+$border-color-dark: $gray4;
+$border-default: $border-weight solid $border-color;
+$border-light: $border-weight solid $border-color-light;
+$border-dark: $border-weight solid $border-color-dark;
+
+// PAGE BACKGROUND
+body {
+    background: $white !important;
+}
+
+// CONTAINER BACKGROUNDS
+.box .content, .box-controls .content, .table table, .module .content, .module .links, .module, .card, .menu {
+    background: #fff !important;
+}
+
+h1, h2, h3, h4, h5, h6 {  }
+
+button { box-shadow: none !important; }
+
+@import "../../base";

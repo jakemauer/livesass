@@ -1,42 +1,24 @@
-p, h1,h2,h3, #main, body, .primary, .primary .wrapper {
-  transition-property: background, background-color, color, border-radius;
-  transition-duration: 1s;
-}
+@import "../default";
 
 $logo: "logo.png";
 $logo-mark: "logo_mark.png";
 
 // Font families
-$font-family-base: Arial, "Helvetica Neue", Helvetica, sans-serif;
-$font-family-title: "Helvetica Neue", Helvetica, Arial, sans-serif;
-$font-family-brand: "Aaux Next";
-
-// AppDirect brand colors
-$color-brand-black: rgb(45,42,38);
-$color-brand-coolgray11: rgb(84,86,91);
-$color-brand-coolgray6: rgb(168,168,170);
-$color-brand-coolgray4: rgb(188,188,188);
-$color-brand-coolgray1: rgb(218,217,215);
-$color-brand-white: rgb(251,251,251);
-$color-brand-blue3035: rgb(0,62,82);
-$color-brand-blue7707: rgb(0,96,128);
-$color-brand-blue7703: rgb(0,154,191);
-$color-brand-blue2975: rgb(150,213,234);
-$color-brand-green368: rgb(118,189,34);
-$color-brand-green382: rgb(195,214,0);
+$font-family-base: "Book Antiqua", Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;
+$font-family-title: Futura, "Trebuchet MS", Arial, sans-serif;
 
 // system base colors
-$black: rgb(45,45,45);
-$white: rgb(255,255,255);
-$red: rgb(227,61,81);
-$yellow: rgb(247,214,25);
-$green: rgb(118,189,34);
-$blue: rgb(0,154,191);
+$black: #b30c58;
+$white: #feebeb;
+$red: #fe4365;
+$yellow: rgb(248,202,77);
+$green: #53ccb1;
+$blue: #186cba;
 
 // system brand colors
-$color-primary: $color-brand-blue7707;
-$color-secondary: $color-brand-blue7703;
-$color-default: tint($black, 90%);
+$color-primary: #53ccb1;
+$color-secondary: #b30c58;
+$color-default: #f9cdad;
 
 // Grays
 $gray1: tint($black, 20%);
@@ -79,3 +61,26 @@ $border-color-dark: $gray2;
 $border-default: $border-weight solid $border-color;
 $border-light: $border-weight solid $border-color-light;
 $border-dark: $border-weight solid $border-color-dark;
+
+// PAGE BACKGROUND
+body, .product.profile {
+    background: $white !important;
+}
+
+
+// CONTAINER BACKGROUNDS
+.box .content, .box-controls .content, .table table, .module .content, .module .links, .module, .card, .menu, .product, .content, .stream, .content .item.active, .image.company {
+    background: #fff !important;
+}
+.carousel .content { background: $white !important; }
+
+// INPUT BACKGROUNDS
+input, textarea, .chzn-drop {background: #fff !important; }
+
+nav { font-style: italic; text-transform: lowercase; }
+nav .header { font-style: normal; text-transform: none; }
+header .primary #logo, header .primary .navigation li { border-color: $gray1 !important; }
+header .navigation > ul > li > a { color: $white !important; }
+
+
+@import "../../base";

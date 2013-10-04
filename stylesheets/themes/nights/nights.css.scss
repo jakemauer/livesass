@@ -1,0 +1,108 @@
+@import "../default";
+
+$logo: "logo.png";
+$logo-mark: "logo_mark.png";
+
+// Font families
+$font-family-base: "Helvetica Neue", Helvetica, sans-serif;
+$font-family-title: Palatino, "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+// system base colors
+$black: rgb(33,20,38);
+$white: rgb(249,252,255);
+$red: rgb(234,96,69);
+$yellow: rgb(248,202,77);
+$green: rgb(53,145,92);
+$blue: rgb(63,86,102);
+
+// system brand colors
+$color-primary: rgb(101,111,140);
+$color-secondary: rgb(65,54,89);
+$color-default: rgb(33,20,38);
+
+// Grays
+$gray1: tint($black, 75%);
+$gray2: tint($black, 50%);
+$gray3: tint($black, 25%);
+$gray4: tint($black, 15%);
+$gray5: tint($black, 10%);
+$gray6: tint($black, 5%);
+
+// element colors
+$text-color: $gray1;
+$text-color-secondary: $gray2;
+$text-color-tertiary: $gray3;
+
+$link-color: $color-primary;
+$link-color-change: $color-secondary;
+
+html, body, select, input, textarea, button { color: $text-color; }
+
+// Lighting
+$shadow-overlay: 0 3px 10px 0 rgba($black, 0.125);
+$shadow-heavy: 0 2px 3px 0 rgba($black, .25);
+$shadow-medium: 0 2px 6px -1px rgba($black, 0.2);
+$shadow-light: 0 1px 3px -1px rgba($black, 0.2);
+
+$shadow-inset-heavy: inset 0 1px 3px 0 rgba($black, 0.2);
+$shadow-inset: inset 0 1px 3px 0 rgba($black, 0.1);
+
+$highlight-inset: none;
+$highlight-drop: none;
+
+// Border styles
+$border-weight: 1px;
+$border-radius-small: 2px;
+$border-radius: 2px !default;
+$border-radius-large: 2px;
+$border-color: $gray1;
+$border-color-light: $gray1;
+$border-color-dark: $gray1;
+$border-default: $border-weight solid $border-color;
+$border-light: $border-weight solid $border-color-light;
+$border-dark: $border-weight solid $border-color-dark;
+
+// Overrides
+
+// PAGE BACKGROUND
+body, .profile, .table {
+    background: $black !important;
+}
+
+div, li, li a, tr, thead, .module, nav ul {
+    border-color: $gray5 !important;    
+}
+
+
+// CONTAINER BACKGROUNDS
+.box .content, .box-controls .content, .table table, .module .content, .module .links, .module, .card, .tabs li, .menu, .list {
+    background: $black !important;
+}
+
+// CONTAINER HEADERS BACKGROUNDS
+.box .header, .box-controls .header, .table .header, .module .header, .card .header {
+    background: linear-gradient(to bottom, #413659 0%, #282137 100%) !important;
+}
+
+// CONTAINER FOOTER BACKGROUNDS
+.box .footer, .box-controls .footer, .table .footer, .module .footer {
+    background: $gray5 !important;
+}
+
+// PRIMARY NAV BACKGROUND
+header .primary, header .primary .wrapper { background: $black !important; }
+
+// SECONDARY NAV BACKGROUND
+header .secondary, header .secondary .wrapper { background: $black !important; }
+
+// INPUT BACKGROUNDS
+input, textarea, .chzn-drop, .table {background: #170e1a !important; border-color: $gray5 !important; }
+
+// Theme Specific
+header .primary { border-bottom: 1px solid $gray6 !important; }
+.pagination a, .pagination .active, .inset { box-shadow: none !important; border-color: $gray3 !important; }
+
+.inset { border-color: $gray4 !important; }
+.inset:hover { background: $gray4 !important; }
+
+@import "../../base";

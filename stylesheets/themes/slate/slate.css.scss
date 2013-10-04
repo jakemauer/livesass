@@ -1,0 +1,80 @@
+@import "../default";
+
+$logo: "logo.png";
+$logo-mark: "logo_mark.png";
+
+// Font families
+$font-family-base: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family-title: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+
+// system base colors
+$black: #2b3a45;
+$white: rgb(254,252,249);
+$red: rgb(234,96,69);
+$yellow: rgb(248,202,77);
+$green: rgb(118,189,34);
+$blue: rgb(63,86,102);
+
+// system brand colors
+$color-primary: $red;
+$color-secondary: $blue;
+$color-default: #fff;
+
+// Grays
+$gray1: tint($black, 20%);
+$gray2: tint($black, 53%);
+$gray3: tint($black, 75%);
+$gray4: tint($black, 90%);
+$gray5: tint($black, 95%);
+$gray6: tint($black, 97%);
+
+// element colors
+$text-color: $gray1;
+$text-color-secondary: $gray3;
+$text-color-tertiary: $gray4;
+
+$link-color: $color-primary;
+$link-color-change: $color-secondary;
+
+html, body, select, input, textarea, button { color: $text-color; }
+
+// Lighting
+$shadow-overlay: 0 3px 10px 0 rgba($black, 0.125);
+$shadow-heavy: 0 2px 3px 0 rgba($black, .25);
+$shadow-medium: 0 2px 6px -1px rgba($black, 0.2);
+$shadow-light: 0 1px 3px -1px rgba($black, 0.2);
+
+$shadow-inset-heavy: inset 0 1px 3px 0 rgba($black, 0.2);
+$shadow-inset: inset 0 1px 3px 0 rgba($black, 0.1);
+
+$highlight-inset: inset 0 1px 0 0 rgba($white, 0.95);
+$highlight-drop: 0 1px 0 0 rgba($white, 0.95);
+
+// Border styles
+$border-weight: 1px;
+$border-radius-small: 5px;
+$border-radius: 5px !default;
+$border-radius-large: 5px;
+$border-color: $gray3;
+$border-color-light: $gray4;
+$border-color-dark: $gray3;
+$border-default: $border-weight solid $border-color;
+$border-light: $border-weight solid $border-color-light;
+$border-dark: $border-weight solid $border-color-dark;
+
+// PAGE BACKGROUND
+body, .product.profile {
+    background: $white !important;
+}
+
+// CONTAINER BACKGROUNDS
+.box .content, .box-controls .content, .table table, .module .content, .module .links, .module, .card, .menu {
+    background: #fff !important;
+}
+
+button { box-shadow: 0px .3em 0px shade($color-default, 60%), inset 0px 0px 1em #fff !important; }
+button.primary { box-shadow: 0px .3em 0px shade($color-primary, 50%), inset 0px 0px 1em rgba(255,255,255, 0.4) !important; }
+button.secondary { box-shadow: 0px .3em 0px shade($color-secondary, 65%), inset 0px 0px 1em rgba(255,255,255, 0.25) !important; }
+
+
+@import "../../base";
